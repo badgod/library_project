@@ -1,41 +1,74 @@
-/*
- * ต้องทำซ้ำสำหรับทุก Weight ที่คุณต้องการใช้ (100, 200, 300, 400, 500, 600, 700)
- * ตัวอย่างนี้แสดงสำหรับ Weight 400 (Regular) และ 700 (Bold)
- */
+/* ------------------------------------------- */
+/* 1. FONT-FACE: IBM Plex Sans Thai (Local Loading - 7 Weights) */
+/* ------------------------------------------- */
 
-/* --- IBM Plex Sans Thai Light (300) --- */
+/* Bold (700) */
 @font-face {
-  font-family: "IBM Plex Sans Thai";
-  src: url("../../assets/fonts/IBM_Plex_Sans_Thai/IBMPlexSansThai-Light.woff2")
-      format("woff2"),
-    url("../../assets/fonts/IBM_Plex_Sans_Thai/IBMPlexSansThai-Light.woff")
-      format("woff");
-  font-weight: 300;
-  font-style: normal;
+    font-family: 'IBM Plex Sans Thai';
+    src: url('../fonts/IBM_Plex_Sans_Thai/IBMPlexSansThai-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
 }
 
-/* --- IBM Plex Sans Thai Regular (400) --- */
+/* SemiBold (600) */
 @font-face {
-  font-family: "IBM Plex Sans Thai";
-  src: url("../../assets/fonts/IBM_Plex_Sans_Thai/IBMPlexSansThai-Regular.woff2")
-      format("woff2"),
-    url("../../assets/fonts/IBM_Plex_Sans_Thai/IBMPlexSansThai-Regular.woff")
-      format("woff");
-  font-weight: 400;
-  font-style: normal;
+    font-family: 'IBM Plex Sans Thai';
+    src: url('../fonts/IBM_Plex_Sans_Thai/IBMPlexSansThai-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
 }
 
-/* --- IBM Plex Sans Thai Bold (700) --- */
+/* Medium (500) */
 @font-face {
-  font-family: "IBM Plex Sans Thai";
-  src: url("../../assets/fonts/IBM_Plex_Sans_Thai/IBMPlexSansThai-Bold.woff2")
-      format("woff2"),
-    url("../../assets/fonts/IBM_Plex_Sans_Thai/IBMPlexSansThai-Bold.woff")
-      format("woff");
-  font-weight: 700;
-  font-style: normal;
+    font-family: 'IBM Plex Sans Thai';
+    src: url('../fonts/IBM_Plex_Sans_Thai/IBMPlexSansThai-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
 }
 
+/* Regular (400) */
+@font-face {
+    font-family: 'IBM Plex Sans Thai';
+    src: url('../fonts/IBM_Plex_Sans_Thai/IBMPlexSansThai-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Light (300) */
+@font-face {
+    font-family: 'IBM Plex Sans Thai';
+    src: url('../fonts/IBM_Plex_Sans_Thai/IBMPlexSansThai-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+/* ExtraLight (200) */
+@font-face {
+    font-family: 'IBM Plex Sans Thai';
+    src: url('../fonts/IBM_Plex_Sans_Thai/IBMPlexSansThai-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+/* Thin (100) */
+@font-face {
+    font-family: 'IBM Plex Sans Thai';
+    src: url('../fonts/IBM_Plex_Sans_Thai/IBMPlexSansThai-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+
+/* ------------------------------------------- */
+/* 2. GLOBAL STYLES (กำหนดให้ฟอนต์ใช้งาน) */
+/* ------------------------------------------- */
+
+/* กำหนดให้ฟอนต์ IBM Plex Sans Thai เป็นฟอนต์หลักของ Body */
 body {
-  font-family: "IBM Plex Sans Thai", sans-serif;
+    font-family: 'IBM Plex Sans Thai', sans-serif;
+}
+
+/* เพื่อให้แน่ใจว่า Element อื่นๆ ใช้ฟอนต์เดียวกัน */
+* {
+    font-family: 'IBM Plex Sans Thai', sans-serif;
 }

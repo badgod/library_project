@@ -13,7 +13,6 @@
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <meta name="theme-color" content="#712cf9" />
     <link href="assets/css/carousel.css" rel="stylesheet" />
-    <link href="assets/css/custom.css" rel="stylesheet" />
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -98,6 +97,7 @@
             display: block !important;
         }
     </style>
+    <link href="assets/css/custom.css" rel="stylesheet" />
 </head>
 
 <body>
