@@ -4,10 +4,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="" />
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
-    <meta name="generator" content="Astro v5.13.2" />
-    <title>Carousel Template · Bootstrap v5.3</title>
+    <meta name="description" content="ระบบจัดการห้องสมุดภายในหน่วยงาน" />
+    <meta name="author" content="Your Team Name" />
+    <title>ระบบจัดการห้องสมุด (LMS)</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/" />
     <script src="assets/js/color-modes.js"></script>
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -96,6 +95,15 @@
         .bd-mode-toggle .dropdown-menu .active .bi {
             display: block !important;
         }
+
+        /* [START] โค้ดปรับความชัดเจนของข้อความบนสไลด์ */
+        .carousel-caption h1,
+        .carousel-caption p {
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+            /* เพิ่มเงาข้อความสีดำเข้ม */
+        }
+
+        /* [END] โค้ดปรับความชัดเจนของข้อความบนสไลด์ */
     </style>
     <link href="assets/css/custom.css" rel="stylesheet" />
 </head>
@@ -208,54 +216,45 @@
                 <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
+
                 <div class="carousel-item active">
-                    <svg aria-hidden="true" class="bd-placeholder-img" height="100%" preserveAspectRatio="xMidYMid slice"
-                        width="100%" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-                    </svg>
+                    <img src="assets/images/1.jpg" class="d-block w-100" alt="ภาพสไลด์ต้อนรับห้องสมุด">
                     <div class="container">
                         <div class="carousel-caption text-start">
-                            <h1>Example headline.</h1>
+                            <h1>ยินดีต้อนรับสู่ระบบจัดการห้องสมุด</h1>
                             <p class="opacity-75">
-                                Some representative placeholder content for the first slide of
-                                the carousel.
+                                ค้นหาหนังสือและทรัพยากรดิจิทัลทั้งหมดของหน่วยงานคุณ
                             </p>
                             <p>
-                                <a class="btn btn-lg btn-primary" href="#">Sign up today</a>
+                                <a class="btn btn-lg btn-primary" href="#">สมัครสมาชิกวันนี้</a>
                             </p>
                         </div>
                     </div>
                 </div>
+
                 <div class="carousel-item">
-                    <svg aria-hidden="true" class="bd-placeholder-img" height="100%" preserveAspectRatio="xMidYMid slice"
-                        width="100%" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-                    </svg>
+                    <img src="assets/images/2.jpg" class="d-block w-100" alt="ภาพสไลด์ E-Book">
                     <div class="container">
                         <div class="carousel-caption">
-                            <h1>Another example headline.</h1>
+                            <h1>เข้าถึง E-Book ได้ทุกที่ทุกเวลา</h1>
                             <p>
-                                Some representative placeholder content for the second slide
-                                of the carousel.
+                                สำหรับสมาชิก: อ่านหนังสืออิเล็กทรอนิกส์ได้ทันทีโดยไม่เสียเวลาจัดส่ง
                             </p>
-                            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+                            <p><a class="btn btn-lg btn-primary" href="#">เข้าสู่ระบบเพื่ออ่าน</a></p>
                         </div>
                     </div>
                 </div>
+
                 <div class="carousel-item">
-                    <svg aria-hidden="true" class="bd-placeholder-img" height="100%" preserveAspectRatio="xMidYMid slice"
-                        width="100%" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-                    </svg>
+                    <img src="assets/images/3.jpg" class="d-block w-100" alt="ภาพสไลด์การจัดส่ง">
                     <div class="container">
                         <div class="carousel-caption text-end">
-                            <h1>One more for good measure.</h1>
+                            <h1>บริการจัดส่งถึงสาขา</h1>
                             <p>
-                                Some representative placeholder content for the third slide of
-                                this carousel.
+                                เมื่อยืมหนังสือเล่ม ระบบจะจัดส่งไปยังสาขาที่คุณสังกัดโดยตรง
                             </p>
                             <p>
-                                <a class="btn btn-lg btn-primary" href="#">Browse gallery</a>
+                                <a class="btn btn-lg btn-primary" href="#">ดูประวัติการยืม</a>
                             </p>
                         </div>
                     </div>
@@ -270,11 +269,7 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-        <!-- Marketing messaging and featurettes
-        ================================================== -->
-        <!-- Wrap the rest of the page in another container to center all the content. -->
         <div class="container marketing">
-            <!-- Three columns of text below the carousel -->
             <div class="row">
                 <div class="col-lg-4">
                     <svg aria-label="Placeholder" class="bd-placeholder-img rounded-circle" height="140"
@@ -291,7 +286,6 @@
                         <a class="btn btn-secondary" href="#">View details &raquo;</a>
                     </p>
                 </div>
-                <!-- /.col-lg-4 -->
                 <div class="col-lg-4">
                     <svg aria-label="Placeholder" class="bd-placeholder-img rounded-circle" height="140"
                         preserveAspectRatio="xMidYMid slice" role="img" width="140" xmlns="http://www.w3.org/2000/svg">
@@ -307,7 +301,6 @@
                         <a class="btn btn-secondary" href="#">View details &raquo;</a>
                     </p>
                 </div>
-                <!-- /.col-lg-4 -->
                 <div class="col-lg-4">
                     <svg aria-label="Placeholder" class="bd-placeholder-img rounded-circle" height="140"
                         preserveAspectRatio="xMidYMid slice" role="img" width="140" xmlns="http://www.w3.org/2000/svg">
@@ -323,10 +316,7 @@
                         <a class="btn btn-secondary" href="#">View details &raquo;</a>
                     </p>
                 </div>
-                <!-- /.col-lg-4 -->
             </div>
-            <!-- /.row -->
-            <!-- START THE FEATURETTES -->
             <hr class="featurette-divider" />
             <div class="row featurette">
                 <div class="col-md-7">
@@ -403,10 +393,7 @@
                 </div>
             </div>
             <hr class="featurette-divider" />
-            <!-- /END THE FEATURETTES -->
         </div>
-        <!-- /.container -->
-        <!-- FOOTER -->
         <footer class="container">
             <p class="float-end"><a href="#">Back to top</a></p>
             <p>
