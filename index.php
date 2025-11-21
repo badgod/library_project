@@ -4,7 +4,9 @@
 // =========================================================
 
 // เริ่มต้น Session 
+include_once __DIR__ . '/config/session_init.php';
 session_start();
+
 
 // 1. นำเข้าไฟล์ที่จำเป็น (ปรับ Path ไปที่ /app_shared/)
 // ใช้ require_once เพื่อหยุดการทำงานหากไฟล์สำคัญหายไป
@@ -31,6 +33,7 @@ $route = $segments[0] ?: 'index'; // หากว่างเปล่า จะ
 $action = $segments[1] ?? 'index';
 
 $page_path = '';
+$title_page = 'My Library App'; // กำหนด Title หน้าเริ่มต้น
 
 switch ($route) {
     // -----------------------------------------------------------------
@@ -38,11 +41,13 @@ switch ($route) {
     // -----------------------------------------------------------------
     case 'index':
         // หน้าแรกสาธารณะ (Carousel + Search)
+        $title_page = 'Home - My Library App';
         $page_path = 'pages/home.php';
         break;
 
     case 'login':
     case 'login.php':
+        $title_page = 'Login - My Library App';
         $page_path = 'pages/login.php';
         break;
     case 'profile':
@@ -92,14 +97,14 @@ switch ($route) {
 if (file_exists($page_path)) {
     // โหลด Header และ Footer สำหรับ Public/Member Layout
     // สมมติว่าไฟล์ header/footer อยู่ใน includes/
-    include __DIR__ . '/includes/_header.php'; // ใช้ _header.php ตามไฟล์ที่คุณมี
+    include __DIR__ . '/includes/header.php'; // ใช้ _header.php ตามไฟล์ที่คุณมี
     include __DIR__ . '/' . $page_path;
-    include __DIR__ . '/includes/_footer.php'; // ใช้ _footer.php ตามไฟล์ที่คุณมี
+    include __DIR__ . '/includes/footer.php'; // ใช้ _footer.php ตามไฟล์ที่คุณมี
 } else if ($route !== 'api') {
     // ถ้าไฟล์ View ไม่พบและไม่ใช่ API Call (404 Error)
     http_response_code(404);
     // โหลดหน้า 404.php แทน (ถ้าไฟล์ 404.php มีอยู่จริงใน pages/)
-    include __DIR__ . '/includes/_header.php';
+    include __DIR__ . '/includes/header.php';
     include __DIR__ . '/pages/404.php';
-    include __DIR__ . '/includes/_footer.php';
+    include __DIR__ . '/includes/footer.php';
 }

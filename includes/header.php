@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ระบบบริหารจัดการห้องสมุด</title>
+    <title><?= $title_page ?></title>
     <script src="assets/js/color-modes.js"></script>
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <meta name="theme-color" content="#712cf9" />
     <link href="assets/css/carousel.css" rel="stylesheet" />
-    <link rel="icon" href="assets/images/digital-library.png" type="image/png">
+    <link rel="icon" href="assets/icons/favicon.png" type="image/png">
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
