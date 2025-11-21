@@ -1,0 +1,14 @@
+RewriteEngine On
+
+# 1. หาก URL เริ่มต้นด้วย /admin ให้ส่งคำขอทั้งหมดไปที่ /admin/index.php 
+# (เพื่อให้ Admin Module จัดการตัวเอง)
+RewriteCond %{REQUEST_URI} ^/admin(/.*)?$
+RewriteRule . admin/index.php [L]
+
+# 2. สำหรับทุก URL ที่เหลือ (Public/Member)
+# ตรวจสอบว่าคำขอไม่ใช่ไฟล์หรือโฟลเดอร์ที่มีอยู่จริง
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# ส่งคำขอทั้งหมดไปที่ index.php และคง Query String ไว้ (QSA)
+RewriteRule ^(.*)$ index.php [L,QSA]
