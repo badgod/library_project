@@ -42,20 +42,21 @@ switch ($route) {
         break;
 
     case 'login':
+    case 'login.php':
         $page_path = 'pages/login.php';
         break;
-    case 'register':
+    case 'profile':
         // หน้า Login/Register อยู่ใน Root Directory
-        $page_path = 'pages/register.php'; 
+        $page_path = 'pages/profile.php';
         break;
-        
+
     // -----------------------------------------------------------------
     // B. MEMBER ACCESS PAGES (ต้องการการตรวจสอบสิทธิ์)
     // -----------------------------------------------------------------
     case 'member':
         // ตรวจสอบสิทธิ์ Member ก่อนเข้าทุกหน้า
         // check_member_access(); 
-        
+
         // โครงสร้างไฟล์: /member/profile.php, /member/history.php
         $file_name = ($action === 'index' || $action === '') ? 'profile' : $action;
         $page_path = 'member/' . $file_name . '.php';
@@ -66,17 +67,17 @@ switch ($route) {
     // -----------------------------------------------------------------
     case 'api':
         // ส่งคำขอไปยัง Handler ในโฟลเดอร์ /api/
-        $handler_name = $action . '_handler.php'; 
+        $handler_name = $action . '_handler.php';
         $handler_path = 'api/' . $handler_name;
-        
+
         if (file_exists($handler_path)) {
             require_once $handler_path;
         } else {
-            http_response_code(400); 
+            http_response_code(400);
             echo json_encode(['error' => 'Public API handler not found.']);
         }
         exit;
-        
+
     default:
         // หากไม่ตรงกับ Route ใดๆ ให้แสดงหน้า 404 (Pages/404.php)
         http_response_code(404);
@@ -102,4 +103,3 @@ if (file_exists($page_path)) {
     include __DIR__ . '/pages/404.php';
     include __DIR__ . '/includes/_footer.php';
 }
-?>
