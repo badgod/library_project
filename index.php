@@ -7,6 +7,9 @@
 include_once __DIR__ . '/config/session_init.php';
 session_start();
 
+require_once __DIR__ . '/config/appconfig.php';
+require_once __DIR__ . '/config/connectdb.php';
+
 
 // 1. นำเข้าไฟล์ที่จำเป็น (ปรับ Path ไปที่ /app_shared/)
 // ใช้ require_once เพื่อหยุดการทำงานหากไฟล์สำคัญหายไป
