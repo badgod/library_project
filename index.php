@@ -36,13 +36,14 @@ $route = $segments[0] ?: 'index'; // หากว่างเปล่า จะ
 $action = $segments[1] ?? 'index';
 
 $page_path = '';
-$title_page = 'My Library App'; // กำหนด Title หน้าเริ่มต้น
+$title_page = 'p'; // กำหนด Title หน้าเริ่มต้น
 
 switch ($route) {
     // -----------------------------------------------------------------
     // A. PUBLIC ACCESS PAGES (Root / login / register)
     // -----------------------------------------------------------------
     case 'index':
+    case 'index.php':
         // หน้าแรกสาธารณะ (Carousel + Search)
         $title_page = 'หน้าหลัก';
         $page_path = 'pages/home.php';

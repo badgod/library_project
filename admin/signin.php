@@ -1,3 +1,9 @@
+<?php
+include_once '../config/session_init.php';
+session_start();
+include_once '../config/appconfig.php';
+include_once '../config/connectdb.php';
+?>
 <!doctype html>
 <html lang="th" data-bs-theme="auto">
 
@@ -5,12 +11,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
-    <title><?= $title_page ?> | <?= SYSTEMNAME_ADMIN ?></title>
+    <meta
+        name="author"
+        content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
+    <meta name="generator" content="Astro v5.13.2" />
+    <title>เข้าสู่ระบบ | <?= SYSTEMNAME_ADMIN ?></title>
     <script src="assets/js/color-modes.js"></script>
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <meta name="theme-color" content="#712cf9" />
-    <link href="assets/css/dashboard.css" rel="stylesheet" />
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <link href="assets/css/sign-in.css" rel="stylesheet" />
     <link rel="icon" href="assets/icons/favicon.png" type="image/png">
     <style>
         .bd-placeholder-img {
@@ -99,7 +108,7 @@
     <link href="assets/css/custom.css" rel="stylesheet" />
 </head>
 
-<body>
+<body class="d-flex align-items-center py-4 bg-body-tertiary">
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
         <symbol id="check2" viewBox="0 0 16 16">
             <path
@@ -184,51 +193,35 @@
             </li>
         </ul>
     </div>
-    <header
-        class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow"
-        data-bs-theme="dark">
-        <a
-            class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white"
-            href="index.php"><?= SYSTEMNAME_ADMIN ?></a>
-        <ul class="navbar-nav flex-row d-md-none">
-            <li class="nav-item text-nowrap">
-                <button
-                    class="nav-link px-3 text-white"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarSearch"
-                    aria-controls="navbarSearch"
-                    aria-expanded="false"
-                    aria-label="Toggle search">
-                    <svg class="bi" aria-hidden="true">
-                        <use xlink:href="#search"></use>
-                    </svg>
-                </button>
-            </li>
-            <li class="nav-item text-nowrap">
-                <button
-                    class="nav-link px-3 text-white"
-                    type="button"
-                    data-bs-toggle="offcanvas"
-                    data-bs-target="#sidebarMenu"
-                    aria-controls="sidebarMenu"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <svg class="bi" aria-hidden="true">
-                        <use xlink:href="#list"></use>
-                    </svg>
-                </button>
-            </li>
-        </ul>
-        <div id="navbarSearch" class="navbar-search w-100 collapse">
-            <input
-                class="form-control w-100 rounded-0 border-0"
-                type="text"
-                placeholder="Search"
-                aria-label="Search" />
-        </div>
-    </header>
-    <div class="container-fluid">
-        <div class="row">
-            <?php include_once __DIR__ . '/sidebar.php'; ?>
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <main class="form-signin w-100 m-auto">
+        <form method="post" action="">
+            <img class="mb-4" src="assets/images/logo.png" alt="Library System" />
+            <h1 class="h3 mb-3 fw-normal"><?= SYSTEMNAME_ADMIN ?></h1>
+            <div class="form-floating">
+                <input
+                    type="text"
+                    class="form-control"
+                    id="floatingInput"
+                    placeholder="name@example.com"
+                    required />
+                <label for="floatingInput">Username</label>
+            </div>
+            <div class="form-floating">
+                <input
+                    type="password"
+                    class="form-control"
+                    id="floatingPassword"
+                    placeholder="Password"
+                    required />
+                <label for="floatingPassword">Password</label>
+            </div>
+            <button class="btn btn-primary w-100 py-2" type="submit">
+                Sign in
+            </button>
+            <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2025</p>
+        </form>
+    </main>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js" class="astro-vvvwv3sm"></script>
+</body>
+
+</html>

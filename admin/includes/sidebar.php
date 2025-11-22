@@ -7,7 +7,7 @@
         aria-labelledby="sidebarMenuLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="sidebarMenuLabel">
-                Company name
+                <?= SYSTEMNAME_ADMIN ?>
             </h5>
             <button
                 type="button"
