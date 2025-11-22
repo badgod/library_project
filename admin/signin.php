@@ -1,6 +1,12 @@
 <?php
 include_once '../config/session_init.php';
 session_start();
+
+if (isset($_SESSION['admin_login']) && $_SESSION['admin_login'] === true) {
+    echo '<meta http-equiv="refresh" content="1; URL = index.php" />';
+    exit();
+}
+
 include_once '../config/appconfig.php';
 include_once '../config/connectdb.php';
 ?>
@@ -202,7 +208,9 @@ include_once '../config/connectdb.php';
                     type="text"
                     class="form-control"
                     id="floatingInput"
-                    placeholder="name@example.com"
+                    placeholder="Username"
+                    name="user_name"
+                    title="กรอกชื่อผู้ใช้"
                     required />
                 <label for="floatingInput">Username</label>
             </div>
@@ -212,13 +220,15 @@ include_once '../config/connectdb.php';
                     class="form-control"
                     id="floatingPassword"
                     placeholder="Password"
+                    name="password"
+                    title="กรอกรหัสผ่าน"
                     required />
                 <label for="floatingPassword">Password</label>
             </div>
             <button class="btn btn-primary w-100 py-2" type="submit">
                 Sign in
             </button>
-            <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2025</p>
+            <p class="mt-5 mb-3 text-body-secondary">&copy; <?= YEAR ?></p>
         </form>
     </main>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js" class="astro-vvvwv3sm"></script>
