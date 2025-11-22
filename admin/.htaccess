@@ -1,0 +1,19 @@
+RewriteEngine On
+
+# 1. กำหนดให้ index.php เป็นไฟล์เริ่มต้นของ Directory (สำคัญมากสำหรับการเข้าถึง Root URL)
+DirectoryIndex index.php
+
+# 2. จัดการ Routing สำหรับ Admin Zone (ส่งต่อไปยัง admin/index.php)
+# ตรวจสอบว่าคำขอไม่ใช่ไฟล์หรือโฟลเดอร์ที่มีอยู่จริง (เช่น assets, vendor)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# หาก URL เริ่มต้นด้วย /admin/ ให้ส่งไปที่ admin/index.php
+RewriteRule ^admin/(.*)$ admin/index.php [L,QSA]
+
+
+# 3. จัดการ Routing สำหรับ Public/Member Zone (ส่งต่อไปยัง index.php)
+# ตรวจสอบว่าคำขอไม่ใช่ไฟล์หรือโฟลเดอร์ที่มีอยู่จริง
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# ส่งคำขอทั้งหมดที่เหลือไปที่ index.php และเก็บ Query String ไว้
+RewriteRule ^(.*)$ index.php [L,QSA]
