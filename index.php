@@ -44,13 +44,13 @@ switch ($route) {
     // -----------------------------------------------------------------
     case 'index':
         // หน้าแรกสาธารณะ (Carousel + Search)
-        $title_page = 'Home - My Library App';
+        $title_page = 'หน้าหลัก';
         $page_path = 'pages/home.php';
         break;
 
     case 'login':
     case 'login.php':
-        $title_page = 'Login - My Library App';
+        $title_page = 'เข้าสู่ระบบ';
         $page_path = 'pages/login.php';
         break;
     case 'profile':

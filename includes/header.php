@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title><?= $title_page ?></title>
+    <title><?= $title_page ?> | <?= SYSTEMNAME ?></title>
     <script src="assets/js/color-modes.js"></script>
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <meta name="theme-color" content="#712cf9" />
@@ -231,7 +231,7 @@
     <header data-bs-theme="dark">
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">ระบบจัดการห้องสมุดออนไลน์</a>
+                <a class="navbar-brand" href="index.php"><?= SYSTEMNAME ?></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
