@@ -100,19 +100,6 @@
                         Settings
                     </a>
                 </li>
-                <li class="nav-item">
-                    <?php $active = ($route == 'profile') ? 'active' : ''; ?>
-                    <a class="nav-link d-flex align-items-center gap-2 <?= $active ?>" href="profile">
-                        <i class="fa-solid fa-user fa-fw"></i>
-                        Profile
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="signout.php">
-                        <i class="fa-solid fa-arrow-right-from-bracket fa-fw"></i>
-                        Sign out
-                    </a>
-                </li>
             </ul>
         </div>
     </div>

@@ -198,47 +198,51 @@
             </li>
         </ul>
     </div>
-    <header
-        class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow"
-        data-bs-theme="dark">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white"
-            href="index.php"><?= SYSTEMNAME_ADMIN ?></a>
+    <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="index.php">
+            <?= SYSTEMNAME_ADMIN ?>
+        </a>
+
         <ul class="navbar-nav flex-row d-md-none">
             <li class="nav-item text-nowrap">
-                <button
-                    class="nav-link px-3 text-white"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarSearch"
-                    aria-controls="navbarSearch"
-                    aria-expanded="false"
-                    aria-label="Toggle search">
-                    <svg class="bi" aria-hidden="true">
-                        <use xlink:href="#search"></use>
-                    </svg>
-                </button>
-            </li>
-            <li class="nav-item text-nowrap">
-                <button
-                    class="nav-link px-3 text-white"
-                    type="button"
-                    data-bs-toggle="offcanvas"
-                    data-bs-target="#sidebarMenu"
-                    aria-controls="sidebarMenu"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <svg class="bi" aria-hidden="true">
-                        <use xlink:href="#list"></use>
-                    </svg>
+                <button class="nav-link px-3 text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa-solid fa-bars"></i>
                 </button>
             </li>
         </ul>
-        <div id="navbarSearch" class="navbar-search w-100 collapse">
-            <input
-                class="form-control w-100 rounded-0 border-0"
-                type="text"
-                placeholder="Search"
-                aria-label="Search" />
+
+        <div class="navbar-nav flex-row ms-auto me-3 d-none d-md-flex align-items-center gap-2">
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle d-flex align-items-center text-white"
+                    id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="rounded-circle bg-secondary d-flex justify-content-center align-items-center me-2"
+                        style="width: 32px; height: 32px;">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <span><?= isset($_SESSION['admin_name']) ? $_SESSION['admin_name'] : 'Admin' ?></span>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="userDropdown">
+                    <li>
+                        <a class="dropdown-item" href="index.php?route=profile">
+                            <i class="fa-solid fa-user-pen me-2"></i> แก้ไขข้อมูลส่วนตัว
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="index.php?route=change_password">
+                            <i class="fa-solid fa-key me-2"></i> เปลี่ยนรหัสผ่าน
+                        </a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li>
+                        <a class="dropdown-item text-danger" href="signout.php">
+                            <i class="fa-solid fa-right-from-bracket me-2"></i> ออกจากระบบ
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </header>
     <div class="container-fluid">

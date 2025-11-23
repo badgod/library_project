@@ -79,3 +79,8 @@ body {
   font-family: "IBM Plex Sans Thai", sans-serif;
 }
 /* ------------------------------------------- */
+
+.navbar .dropdown-menu {
+  position: absolute !important;
+  z-index: 1000; /* ให้แน่ใจว่าอยู่บนสุด */
+}
