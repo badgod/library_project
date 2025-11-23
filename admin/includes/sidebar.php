@@ -93,7 +93,7 @@
 
             <ul class="nav flex-column mb-auto">
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="index.php/settings.php">
+                    <a class="nav-link d-flex align-items-center gap-2" href="settings">
                         <i class="fa-solid fa-gear fa-fw"></i>
                         Settings
                     </a>
