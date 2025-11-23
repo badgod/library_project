@@ -16,17 +16,14 @@ include_once '../config/connectdb.php';
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="" />
-    <meta
-        name="author"
-        content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
-    <meta name="generator" content="Astro v5.13.2" />
     <title>เข้าสู่ระบบ | <?= SYSTEMNAME_ADMIN ?></title>
     <script src="assets/js/color-modes.js"></script>
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <meta name="theme-color" content="#712cf9" />
     <link href="assets/css/sign-in.css" rel="stylesheet" />
     <link rel="icon" href="assets/icons/favicon.png" type="image/png">
+    <link href="vendor/sweetAlert/sweetalert2.css" rel="stylesheet" />
+    <link href="vendor/sweetAlert/bootstrap-5.css" rel="stylesheet" />
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -200,16 +197,19 @@ include_once '../config/connectdb.php';
         </ul>
     </div>
     <main class="form-signin w-100 m-auto">
-        <form method="post" action="">
-            <img class="mb-4" src="assets/images/logo.png" alt="Library System" />
-            <h1 class="h3 mb-3 fw-normal"><?= SYSTEMNAME_ADMIN ?></h1>
+        <form method="post" action="" id="loginForm">
+            <div class="text-center mb-4">
+                <img class="mb-4 text-center" src="assets/images/logo.png" alt="Library System" />
+                <h1 class="h3 mb-3 fw-normal"><?= SYSTEMNAME_ADMIN ?></h1>
+            </div>
+
             <div class="form-floating">
                 <input
                     type="text"
                     class="form-control"
                     id="floatingInput"
                     placeholder="Username"
-                    name="user_name"
+                    name="username"
                     title="กรอกชื่อผู้ใช้"
                     required />
                 <label for="floatingInput">Username</label>
@@ -225,13 +225,65 @@ include_once '../config/connectdb.php';
                     required />
                 <label for="floatingPassword">Password</label>
             </div>
-            <button class="btn btn-primary w-100 py-2" type="submit">
+            <button id="btnLogin" class="btn btn-primary w-100 py-2" type="submit">
                 Sign in
             </button>
             <p class="mt-5 mb-3 text-body-secondary">&copy; <?= YEAR ?></p>
         </form>
     </main>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js" class="astro-vvvwv3sm"></script>
+    <script src="vendor/jQuery/jquery-3.7.1.min.js"></script>
+    <script src="vendor/sweetAlert/sweetalert2.all.min.js"></script>
 </body>
 
 </html>
+<script>
+    $(function() {
+        $('#loginForm').on('submit', function(e) {
+            e.preventDefault(); // ป้องกันหน้าเว็บ Refresh
+
+            // เก็บค่าปุ่มเดิมและเปลี่ยนสถานะเป็น Loading
+            let btn = $('#btnLogin');
+            let originalText = btn.text();
+            btn.prop('disabled', true).text('กำลังตรวจสอบ...');
+
+            // ส่งข้อมูลด้วย Ajax
+            $.ajax({
+                url: 'api/auth.php',
+                type: 'POST',
+                data: $(this).serialize(), // ดึงค่า input ทั้งหมดใน form
+                dataType: 'json',
+                success: function(response) {
+                    console.log(response);
+                    if (response.status === 'success') {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'สำเร็จ',
+                            text: response.message,
+                            timer: 1500,
+                            showConfirmButton: false
+                        }).then(() => {
+                            window.location.href = 'dashboard.php';
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'ผิดพลาด',
+                            text: response.message
+                        });
+                        btn.prop('disabled', false).text(originalText);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'เกิดข้อผิดพลาดในการเชื่อมต่อเซิร์ฟเวอร์'
+                    });
+                    btn.prop('disabled', false).text(originalText);
+                }
+            });
+        });
+    });
+</script>

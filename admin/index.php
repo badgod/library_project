@@ -10,6 +10,9 @@ session_start();
 
 require_once __DIR__ . '/../config/appconfig.php';
 require_once __DIR__ . '/../config/connectdb.php';
+require_once __DIR__ . '/services/security.php';
+
+checkAdminLogin(); // ตรวจสอบการ Login
 
 // 2. Routing Logic (ปรับให้รองรับ Path ของ Admin)
 $script_name = $_SERVER['SCRIPT_NAME']; // เช่น /library_project/admin/index.php
