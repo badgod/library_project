@@ -224,12 +224,12 @@
 
                 <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="userDropdown">
                     <li>
-                        <a class="dropdown-item" href="index.php?route=profile">
+                        <a class="dropdown-item" href="profile">
                             <i class="fa-solid fa-user-pen me-2"></i> แก้ไขข้อมูลส่วนตัว
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="index.php?route=change_password">
+                        <a class="dropdown-item" href="change_password">
                             <i class="fa-solid fa-key me-2"></i> เปลี่ยนรหัสผ่าน
                         </a>
                     </li>
