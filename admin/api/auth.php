@@ -1,13 +1,17 @@
 <?php
 header('Content-Type: application/json');
 include_once '../../config/session_init.php';
-session_start();
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(['status' => 'error', 'message' => 'Invalid Request']);
     exit();
 }
 
+require_once '../../config/appconfig.php';
 require_once '../../config/connectdb.php';
 
 // รับค่าจาก AJAX (ชื่อ field ตาม name ใน input form)

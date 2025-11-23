@@ -40,10 +40,16 @@ $title_page = '';
 
 // 3. กำหนด Pages ตาม Route
 switch ($route) {
-    case 'dashboard':
-    case 'dashboard.php':
+    case 'index':
+    case 'index.php':
         $title_page = 'หน้าหลัก';
         $page_path = 'pages/dashboard.php';
+        break;
+
+    case 'settings':
+    case 'settings.php':
+        $title_page = 'การตั้งค่าระบบ';
+        $page_path = 'pages/settings/settings.php';
         break;
 
     // เพิ่ม Case อื่นๆ สำหรับจัดการข้อมูลในอนาคต เช่น

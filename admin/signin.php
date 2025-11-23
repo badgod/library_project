@@ -263,7 +263,7 @@ include_once '../config/connectdb.php';
                             timer: 1500,
                             showConfirmButton: false
                         }).then(() => {
-                            window.location.href = 'dashboard.php';
+                            window.location.href = 'index.php';
                         });
                     } else {
                         Swal.fire({
