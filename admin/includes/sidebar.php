@@ -19,7 +19,8 @@
         <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="#">
+                    <?php $active = ($route == 'index') ? 'active' : ''; ?>
+                    <a class="nav-link d-flex align-items-center gap-2 <?= $active ?>" aria-current="page" href="index">
                         <i class="fa-solid fa-gauge fa-fw"></i>
                         Dashboard
                     </a>
@@ -93,9 +94,17 @@
 
             <ul class="nav flex-column mb-auto">
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="settings">
+                    <?php $active = ($route == 'settings') ? 'active' : ''; ?>
+                    <a class="nav-link d-flex align-items-center gap-2 <?= $active ?>" href="settings">
                         <i class="fa-solid fa-gear fa-fw"></i>
                         Settings
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <?php $active = ($route == 'profile') ? 'active' : ''; ?>
+                    <a class="nav-link d-flex align-items-center gap-2 <?= $active ?>" href="profile">
+                        <i class="fa-solid fa-user fa-fw"></i>
+                        Profile
                     </a>
                 </li>
                 <li class="nav-item">

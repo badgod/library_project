@@ -6,12 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
     <title><?= $title_page ?> | <?= SYSTEMNAME_ADMIN ?></title>
+    <link rel="icon" href="assets/icons/favicon.png" type="image/png">
     <script src="assets/js/color-modes.js"></script>
+
+    <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
     <meta name="theme-color" content="#712cf9" />
     <link href="assets/css/dashboard.css" rel="stylesheet" />
+
+    <!-- FontAwesome --->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
-    <link rel="icon" href="assets/icons/favicon.png" type="image/png">
+
+    <!-- jQuery --->
+    <script src="vendor/jQuery/jquery-3.7.1.min.js"></script>
+
+    <!-- SweetAlert2 --->
+    <link href="vendor/sweetAlert/sweetalert2.css" rel="stylesheet" />
+    <link href="vendor/sweetAlert/bootstrap-5.css" rel="stylesheet" />
+    <script src="vendor/sweetAlert/sweetalert2.all.min.js"></script>
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -96,6 +109,7 @@
             display: block !important;
         }
     </style>
+    <!-- Custom styles for this template -->
     <link href="assets/css/custom.css" rel="stylesheet" />
 </head>
 
@@ -187,8 +201,7 @@
     <header
         class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow"
         data-bs-theme="dark">
-        <a
-            class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white"
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white"
             href="index.php"><?= SYSTEMNAME_ADMIN ?></a>
         <ul class="navbar-nav flex-row d-md-none">
             <li class="nav-item text-nowrap">
