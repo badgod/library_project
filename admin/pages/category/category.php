@@ -1,8 +1,8 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2"><i class="fa-solid fa-list"></i> หมวดหมู่หนังสือ</h1>
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#categoryModal" onclick="resetForm()">
+    <h1 class="h2"><i class="fa-solid fa-tags"></i> หมวดหมู่หนังสือ</h1>
+    <button class="btn btn-primary" onclick="openCreateModal()">
         <i class="fa-solid fa-plus"></i> เพิ่มหมวดหมู่
     </button>
 </div>
@@ -35,13 +35,16 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="categoryForm">
+                <form id="categoryForm" class="needs-validation" novalidate>
                     <input type="hidden" name="action" id="formAction" value="create">
                     <input type="hidden" name="category_id" id="categoryId">
 
                     <div class="mb-3">
                         <label class="form-label">ชื่อหมวดหมู่ <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="name" id="categoryName" required placeholder="เช่น เทคโนโลยี">
+                        <div class="invalid-feedback">
+                            กรุณากรอกชื่อหมวดหมู่
+                        </div>
                     </div>
 
                     <div class="mb-3">
@@ -51,8 +54,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
-                <button type="button" class="btn btn-primary" onclick="saveCategory()">บันทึก</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> <i class="fa-solid fa-xmark me-2"></i>ปิด</button>
+                <button type="submit" form="categoryForm" class="btn btn-primary"><i class="fa-solid fa-floppy-disk me-2"></i>บันทึก</button>
             </div>
         </div>
     </div>
@@ -67,6 +70,7 @@
     let table;
 
     $(document).ready(function() {
+        // โหลดตาราง
         table = $('#categoryTable').DataTable({
             ajax: 'api/category_api.php',
             columns: [{
@@ -74,15 +78,13 @@
                 },
                 {
                     data: 'name'
-                }, // แก้ไขให้ตรงกับฟิลด์ใน DB
+                },
                 {
                     data: 'description'
-                }, // เพิ่มคอลัมน์ description
+                },
                 {
                     data: null,
                     render: function(data, type, row) {
-                        // ส่งข้อมูล description ไปที่ฟังก์ชัน editCategory ด้วย (ต้อง escape string กัน error)
-                        // ใช้ replace เพื่อจัดการกับเครื่องหมาย ' หรือ " ในข้อความที่อาจทำให้ JS พัง
                         let safeName = row.name ? row.name.replace(/'/g, "\\'") : "";
                         let safeDesc = row.description ? row.description.replace(/'/g, "\\'").replace(/\n/g, "\\n") : "";
 
@@ -101,21 +103,44 @@
                 url: "//cdn.datatables.net/plug-ins/1.13.7/i18n/th.json"
             }
         });
+
+        // 5. Logic การตรวจสอบฟอร์มของ Bootstrap 5
+        // ดักจับ Event Submit ของ Form
+        $('#categoryForm').on('submit', function(event) {
+            // หยุดการทำงานปกติ (ไม่ให้ Refresh หน้า)
+            event.preventDefault();
+            event.stopPropagation();
+
+            const form = this;
+
+            // ตรวจสอบความถูกต้อง (Validity)
+            if (form.checkValidity()) {
+                // ถ้าข้อมูลถูกต้อง -> ส่ง Ajax
+                saveCategoryAjax();
+            }
+
+            // เพิ่ม class 'was-validated' เพื่อให้ Bootstrap แสดงสีเขียว/แดง
+            $(form).addClass('was-validated');
+        });
     });
+
+    function openCreateModal() {
+        resetForm();
+        $('#modalTitle').text('เพิ่มหมวดหมู่');
+        $('#categoryModal').modal('show');
+    }
 
     function resetForm() {
         $('#categoryForm')[0].reset();
         $('#formAction').val('create');
         $('#categoryId').val('');
-        $('#modalTitle').text('เพิ่มหมวดหมู่');
+
+        // ล้างสถานะ Validation (สีเขียว/แดง) ออก
+        $('#categoryForm').removeClass('was-validated');
     }
 
-    function saveCategory() {
-        if (!$('#categoryName').val()) {
-            Swal.fire('แจ้งเตือน', 'กรุณากรอกชื่อหมวดหมู่', 'warning');
-            return;
-        }
-
+    // แยกฟังก์ชัน Ajax ออกมา
+    function saveCategoryAjax() {
         $.ajax({
             url: 'api/category_api.php',
             method: 'POST',
@@ -129,16 +154,22 @@
                 } else {
                     Swal.fire('ผิดพลาด', res.message, 'error');
                 }
+            },
+            error: function(err) {
+                console.error(err);
+                Swal.fire('Error', 'เกิดข้อผิดพลาดในการเชื่อมต่อ', 'error');
             }
         });
     }
 
-    // รับ parameter description เพิ่ม
     function editCategory(id, name, desc) {
+        resetForm(); // ล้างค่าเก่าและ validation class ก่อน
+
         $('#formAction').val('update');
         $('#categoryId').val(id);
         $('#categoryName').val(name);
-        $('#categoryDesc').val(desc); // ใส่ค่า description ลงในฟอร์ม
+        $('#categoryDesc').val(desc);
+
         $('#modalTitle').text('แก้ไขหมวดหมู่');
         $('#categoryModal').modal('show');
     }

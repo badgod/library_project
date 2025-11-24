@@ -51,7 +51,7 @@
                 <li class="nav-item">
                     <?php $active = ($route == 'category') ? 'active' : ''; ?>
                     <a class="nav-link d-flex align-items-center gap-2 <?= $active ?>" href="category">
-                        <i class="fa-solid fa-list fa-fw"></i>
+                        <i class="fa-solid fa-tags fa-fw"></i>
                         หมวดหมู่หนังสือ
                     </a>
                 </li>
