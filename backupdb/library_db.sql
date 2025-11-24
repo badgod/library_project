@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 24, 2025 at 09:30 AM
+-- Generation Time: Nov 24, 2025 at 12:09 PM
 -- Server version: 8.0.40
 -- PHP Version: 8.3.14
 
@@ -202,15 +202,16 @@ CREATE TABLE `user` (
   `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ชื่อผู้ใช้สำหรับ Login',
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'รหัสผ่านที่ถูกเข้ารหัส',
   `role` enum('member','admin') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'สิทธิ์การใช้งาน (''member'', ''admin'')',
-  `member_id` int DEFAULT NULL COMMENT 'รหัสสมาชิก'
+  `member_id` int DEFAULT NULL COMMENT 'รหัสสมาชิก',
+  `change_password` int NOT NULL DEFAULT '0' COMMENT 'ตรวจสอบว่าเปลี่นรหัสผ่านหรือยัง 0 = ยังไม่ได้เปลี่ยนใช้รหัสผ่านเริ่มต้นอยู่ 1 = เปลี่ยนแล้ว'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='ตาราง : ผู้ใช้ระบบ';
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `username`, `password`, `role`, `member_id`) VALUES
-(1, 'admin', '$2y$10$NB9oPlgek0SQ1HqQgfXKfusahEG6KnxIaVQX14jRbtRUVCi6NkTse', 'admin', 1);
+INSERT INTO `user` (`user_id`, `username`, `password`, `role`, `member_id`, `change_password`) VALUES
+(1, 'admin', '$2y$10$NB9oPlgek0SQ1HqQgfXKfusahEG6KnxIaVQX14jRbtRUVCi6NkTse', 'admin', 1, 0);
 
 --
 -- Indexes for dumped tables

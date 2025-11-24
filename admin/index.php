@@ -52,6 +52,12 @@ switch ($route) {
         $page_path = 'pages/settings/settings.php';
         break;
 
+    case 'users':
+    case 'users.php':
+        $title_page = 'ผู้ใช้งานและสมาชิก';
+        $page_path = 'pages/user/user.php';
+        break;
+
     case 'profile':
     case 'profile.php':
         $title_page = 'แก้ไขข้อมูลส่วนตัว';
@@ -62,6 +68,12 @@ switch ($route) {
     case 'change_password.php':
         $title_page = 'เปลี่ยนรหัสผ่าน';
         $page_path = 'pages/profile/change_password.php';
+        break;
+
+    case 'category':
+    case 'category.php':
+        $title_page = 'หมวดหมู่หนังสืือ';
+        $page_path = 'pages/category/category.php';
         break;
 
     // เพิ่ม Case อื่นๆ สำหรับจัดการข้อมูลในอนาคต เช่น
