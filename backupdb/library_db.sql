@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 24, 2025 at 12:09 PM
+-- Generation Time: Nov 25, 2025 at 03:45 AM
 -- Server version: 8.0.40
 -- PHP Version: 8.3.14
 
@@ -48,6 +48,17 @@ CREATE TABLE `category` (
   `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'ชื่อหมวดหมู่ เช่น เทคโนโลยี การบริหาร',
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'คำอธิบาย'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='ตาราง : หมวดหมู่';
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`category_id`, `name`, `description`) VALUES
+(1, 'เทคโนโลยีและคอมพิวเตอร์', 'หนังสือเกี่ยวกับคอมพิวเตอร์ การเขียนโปรแกรม และเทคโนโลยีสมัยใหม่'),
+(2, 'วรรณกรรมและนวนิยาย', 'รวมนิยาย เรื่องสั้น และวรรณกรรมแปลจากต่างประเทศ'),
+(3, 'การบริหารและการจัดการ', 'คู่มือการบริหารธุรกิจ การตลาด และการพัฒนาองค์กร'),
+(4, 'วิทยาศาสตร์และธรรมชาติ', 'ความรู้ทางวิทยาศาสตร์ ชีววิทยา และสิ่งแวดล้อม'),
+(5, 'ประวัติศาสตร์และภูมิศาสตร์', 'เรื่องราวทางประวัติศาสตร์ และภูมิศาสตร์ของประเทศต่างๆ');
 
 -- --------------------------------------------------------
 
@@ -145,7 +156,7 @@ CREATE TABLE `member` (
   `last_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'นามสกุล',
   `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'อีเมล (ใช้ติดต่อ)',
   `tel` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'เบอร์โทรติดต่อ',
-  `status` enum('active','inactive') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'สถานะ (''active'', ''inactive'', ''pending'')'
+  `status` enum('active','inactive') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'สถานะ (''active'', ''inactive'')'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='ตาราง : สมาชิก';
 
 --
@@ -153,7 +164,9 @@ CREATE TABLE `member` (
 --
 
 INSERT INTO `member` (`member_id`, `employee_id`, `first_name`, `last_name`, `email`, `tel`, `status`) VALUES
-(1, '0000', 'เจ้าหน้าที่ดูแลห้องสมุด', 'ผู้ดูแลระบบ', 'admin@mail.com', '0999999999', 'active');
+(1, '0000', 'เจ้าหน้าที่ดูแลห้องสมุด', 'ผู้ดูแลระบบ', 'admin@mail.com', '0999999999', 'active'),
+(2, '0001', 'ผู้ใช้ระบบ', 'ทดสอบ', 'member@mail.com', '098989890', 'active'),
+(3, '00002', 'สุพจน์', 'วงษ์ศรี', 'supod@mail.com', '0988888888', 'active');
 
 -- --------------------------------------------------------
 
@@ -211,7 +224,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `role`, `member_id`, `change_password`) VALUES
-(1, 'admin', '$2y$10$NB9oPlgek0SQ1HqQgfXKfusahEG6KnxIaVQX14jRbtRUVCi6NkTse', 'admin', 1, 0);
+(1, 'admin', '$2y$10$NB9oPlgek0SQ1HqQgfXKfusahEG6KnxIaVQX14jRbtRUVCi6NkTse', 'admin', 1, 1),
+(2, 'member', '$2y$10$M39a9Ph.oE8HB8bfMf1KjOw4qrXs.hrdZHuSEjyA1ihcSg8iRbWBC', 'member', 2, 0),
+(3, 'supod', '$2y$10$0ToyjYdBU2k1LlfIEvRF/.MqfwiAgaaWz9lz25sVJUYBPKddP1bt6', 'member', 3, 0);
 
 --
 -- Indexes for dumped tables
@@ -317,7 +332,7 @@ ALTER TABLE `book_title`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int NOT NULL AUTO_INCREMENT COMMENT 'รหัสหมวดหมู่ (Primary Key)';
+  MODIFY `category_id` int NOT NULL AUTO_INCREMENT COMMENT 'รหัสหมวดหมู่ (Primary Key)', AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `ebook`
@@ -359,7 +374,7 @@ ALTER TABLE `loan_renewal`
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `member_id` int NOT NULL AUTO_INCREMENT COMMENT 'รหัสสมาชิก (PK)', AUTO_INCREMENT=2;
+  MODIFY `member_id` int NOT NULL AUTO_INCREMENT COMMENT 'รหัสสมาชิก (PK)', AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `physical_copy`
@@ -377,7 +392,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT COMMENT 'รหัสผู้ใช้งาน (PK)', AUTO_INCREMENT=2;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT COMMENT 'รหัสผู้ใช้งาน (PK)', AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
