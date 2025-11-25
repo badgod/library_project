@@ -34,8 +34,8 @@
             </h6>
             <ul class="nav flex-column mb-auto">
                 <li class="nav-item">
-                    <?php $active = ($route == 'users') ? 'active' : ''; ?>
-                    <a class="nav-link d-flex align-items-center gap-2 <?= $active ?>" href="users">
+                    <?php $active = ($route == 'user') ? 'active' : ''; ?>
+                    <a class="nav-link d-flex align-items-center gap-2 <?= $active ?>" href="user">
                         <i class="fa-solid fa-users-gear fa-fw"></i>
                         ผู้ใช้งานและสมาชิก
                     </a>

@@ -1,12 +1,12 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2"><i class="fa-solid fa-user-pen me-2"></i> แก้ไขข้อมูลส่วนตัว</h1>
+    <h1 class="h2"><i class="fa-solid fa-user-pen me-2"></i>แก้ไขข้อมูลส่วนตัว</h1>
 </div>
 
 <div class="row">
     <div class="col">
         <div class="card shadow-sm">
             <div class="card-body">
-                <form id="profileForm">
+                <form id="profileForm" class="needs-validation" novalidate>
                     <input type="hidden" name="action" value="update_info">
                     
                     <div class="mb-3">
@@ -21,18 +21,21 @@
                     
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <label class="form-label">ชื่อจริง</label>
+                            <label class="form-label">ชื่อจริง <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="first_name" required>
+                            <div class="invalid-feedback">กรุณากรอกชื่อจริง</div>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">นามสกุล</label>
+                            <label class="form-label">นามสกุล <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="last_name" required>
+                            <div class="invalid-feedback">กรุณากรอกนามสกุล</div>
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">อีเมล</label>
                         <input type="email" class="form-control" name="email">
+                        <div class="invalid-feedback">รูปแบบอีเมลไม่ถูกต้อง</div>
                     </div>
 
                     <div class="mb-3">
@@ -72,24 +75,39 @@ $(document).ready(function() {
         }
     });
 
-    // 2. บันทึกข้อมูล
+    // 2. บันทึกข้อมูล พร้อม Validation
     $('#profileForm').on('submit', function(e) {
+        // หยุดการทำงานปกติ
         e.preventDefault();
-        $.ajax({
-            url: 'api/profile_api.php',
-            method: 'POST',
-            data: $(this).serialize(),
-            dataType: 'json',
-            success: function(res) {
-                if(res.status === 'success') {
-                    Swal.fire('สำเร็จ', res.message, 'success').then(() => {
-                        location.reload(); // รีโหลดเพื่ออัปเดตชื่อบน Navbar
-                    });
-                } else {
-                    Swal.fire('ผิดพลาด', res.message, 'error');
+        e.stopPropagation();
+
+        const form = this;
+
+        // ตรวจสอบความถูกต้อง (Validity)
+        if (form.checkValidity()) {
+            // ถ้าข้อมูลถูกต้อง -> ส่ง Ajax
+            $.ajax({
+                url: 'api/profile_api.php',
+                method: 'POST',
+                data: $(form).serialize(),
+                dataType: 'json',
+                success: function(res) {
+                    if(res.status === 'success') {
+                        Swal.fire('สำเร็จ', res.message, 'success').then(() => {
+                            location.reload(); 
+                        });
+                    } else {
+                        Swal.fire('ผิดพลาด', res.message, 'error');
+                    }
+                },
+                error: function() {
+                    Swal.fire('Error', 'เกิดข้อผิดพลาดในการเชื่อมต่อ', 'error');
                 }
-            }
-        });
+            });
+        }
+
+        // เพิ่ม class เพื่อแสดงผลสีเขียว/แดง
+        $(form).addClass('was-validated');
     });
 });
 </script>

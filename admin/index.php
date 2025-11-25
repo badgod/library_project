@@ -52,10 +52,16 @@ switch ($route) {
         $page_path = 'pages/settings/settings.php';
         break;
 
-    case 'users':
-    case 'users.php':
+    case 'user':
+    case 'user.php':
         $title_page = 'ผู้ใช้งานและสมาชิก';
         $page_path = 'pages/user/user.php';
+        break;
+
+    case 'user_form':
+    case 'user_form.php':
+        $title_page = 'ข้อมูลผู้ใช้งาน';
+        $page_path = 'pages/user/user_form.php';
         break;
 
     case 'profile':
