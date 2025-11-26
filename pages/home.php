@@ -8,7 +8,7 @@
     <div class="carousel-inner">
 
         <div class="carousel-item active">
-            <img src="assets/images/1.jpg" class="d-block w-100" alt="ภาพสไลด์ต้อนรับห้องสมุด">
+            <img src="assets/images/slide_1.jpg" class="d-block w-100" alt="ภาพสไลด์ต้อนรับห้องสมุด">
             <div class="container">
                 <div class="carousel-caption text-start">
                     <h1>ยินดีต้อนรับสู่ระบบจัดการห้องสมุด</h1>
@@ -23,7 +23,7 @@
         </div>
 
         <div class="carousel-item">
-            <img src="assets/images/2.jpg" class="d-block w-100" alt="ภาพสไลด์ E-Book">
+            <img src="assets/images/slide_2.jpg" class="d-block w-100" alt="ภาพสไลด์ E-Book">
             <div class="container">
                 <div class="carousel-caption">
                     <h1>เข้าถึง E-Book ได้ทุกที่ทุกเวลา</h1>
@@ -36,7 +36,7 @@
         </div>
 
         <div class="carousel-item">
-            <img src="assets/images/3.jpg" class="d-block w-100" alt="ภาพสไลด์การจัดส่ง">
+            <img src="assets/images/slide_3.jpg" class="d-block w-100" alt="ภาพสไลด์การจัดส่ง">
             <div class="container">
                 <div class="carousel-caption text-end">
                     <h1>บริการตลอด 24 ชั่วโมง</h1>
