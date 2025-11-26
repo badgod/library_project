@@ -1,8 +1,4 @@
 <?php
-// =========================================================
-// ADMIN FRONT CONTROLLER: admin/index.php
-// =========================================================
-
 // 1. เริ่มต้น Session และ Config (เรียกจากโฟลเดอร์หลัก ../config)
 // ใช้ __DIR__ . '/../' เพื่อถอยกลับไป 1 ขั้นจากโฟลเดอร์ admin
 include_once __DIR__ . '/../config/session_init.php';
@@ -82,14 +78,17 @@ switch ($route) {
         $page_path = 'pages/category/category.php';
         break;
 
-    // เพิ่ม Case อื่นๆ สำหรับจัดการข้อมูลในอนาคต เช่น
-    // case 'users':
-    //     $page_path = 'pages/users.php';
-    //     break;
-
-    // case 'books':
-    //     $page_path = 'pages/books.php';
-    //     break;
+    case 'book':
+    case 'book.php':
+        $title_page = 'หนังสือ';
+        $page_path = 'pages/book/book.php';
+        break;
+    
+    case 'book_form':
+    case 'book_form.php':
+        $title_page = 'ข้อมูลหนังสือ';
+        $page_path = 'pages/book/book_form.php';
+        break;
 
     default:
         http_response_code(404);
@@ -97,10 +96,7 @@ switch ($route) {
         break;
 }
 
-// =========================================================
 // 4. โหลดหน้า View (Layout Management)
-// =========================================================
-
 // ตรวจสอบไฟล์ View
 $full_page_path = __DIR__ . '/' . $page_path;
 

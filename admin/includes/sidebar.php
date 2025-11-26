@@ -55,8 +55,9 @@
                         หมวดหมู่หนังสือ
                     </a>
                 </li>
+                <?php $active = ($route == 'book') ? 'active' : ''; ?>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="#">
+                    <a class="nav-link d-flex align-items-center gap-2 <?= $active ?>" href="book">
                         <i class="fa-solid fa-book fa-fw"></i>
                         หนังสือ
                     </a>
