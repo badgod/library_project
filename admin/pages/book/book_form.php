@@ -30,7 +30,7 @@
                     <div class="row">
                         <div class="col-md-4 text-center mb-3">
                             <div class="border rounded p-2 mb-2 bg-light position-relative">
-                                <img id="previewImage" src="../assets/images/default.jpg" class="img-fluid" style="max-height: 300px;">
+                                <img id="previewImage" src="../assets/images/blank_cover_book.jpg" class="img-fluid" style="max-height: 300px;">
                             </div>
                             <label class="form-label fw-bold">รูปปกหนังสือ</label>
                             <input type="file" class="form-control" name="image" id="imageInput" accept="image/jpeg, image/png">
@@ -42,9 +42,7 @@
                             <div class="mb-3">
                                 <label class="form-label">ชื่อเรื่อง <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" name="title" id="bookTitle" required>
-                                <div class="invalid-feedback">
-                                    กรุณากรอกชื่อหนังสือ
-                                </div>
+                                <div class="invalid-feedback">กรุณากรอกชื่อหนังสือ</div>
                             </div>
                             
                             <div class="row mb-3">
@@ -52,10 +50,8 @@
                                     <label class="form-label">หมวดหมู่ <span class="text-danger">*</span></label>
                                     <select class="form-select" name="category_id" id="categoryId" required>
                                         <option value="">-- เลือกหมวดหมู่ --</option>
-                                        </select>
-                                    <div class="invalid-feedback">
-                                        กรุณาเลือกหมวดหมู่
-                                    </div>
+                                    </select>
+                                    <div class="invalid-feedback">กรุณาเลือกหมวดหมู่</div>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">ผู้แต่ง</label>
@@ -95,9 +91,7 @@
                     <div class="col-md-6">
                         <label class="form-label">เลขทะเบียนหนังสือ (Accession No) <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="accession_no" required placeholder="เช่น BK001-01">
-                        <div class="invalid-feedback">
-                            กรุณากรอกเลขทะเบียน
-                        </div>
+                        <div class="invalid-feedback">กรุณากรอกเลขทะเบียน</div>
                     </div>
                     <div class="col-md-2">
                         <button type="submit" class="btn btn-success w-100">
@@ -107,16 +101,11 @@
                 </form>
             </div>
         </div>
-
         <div class="card shadow-sm">
             <div class="card-body">
                 <table class="table table-bordered table-striped" id="copyTable">
                     <thead class="table-light">
-                        <tr>
-                            <th>เลขทะเบียน</th>
-                            <th>สถานะ</th>
-                            <th width="10%">จัดการ</th>
-                        </tr>
+                        <tr><th>เลขทะเบียน</th><th>สถานะ</th><th width="10%">จัดการ</th></tr>
                     </thead>
                     <tbody id="copyTableBody">
                         <tr><td colspan="3" class="text-center">กำลังโหลด...</td></tr>
@@ -129,16 +118,12 @@
     <div class="tab-pane fade" id="ebook" role="tabpanel">
         <div class="card shadow-sm">
             <div class="card-body text-center p-5">
-                <div id="ebookStatusArea">
-                    </div>
-                
+                <div id="ebookStatusArea"></div>
                 <hr class="my-4">
-                
                 <h5 class="mb-3">อัปโหลดไฟล์ใหม่ (PDF)</h5>
                 <form id="ebookForm" class="d-inline-block text-start needs-validation" style="max-width: 400px;" novalidate>
                     <input type="hidden" name="action" value="upload_ebook">
                     <input type="hidden" name="title_id" id="ebookTitleId">
-                    
                     <div class="mb-3">
                         <div class="input-group has-validation">
                             <input type="file" class="form-control" name="ebook_file" accept=".pdf" required>
@@ -164,6 +149,14 @@
         loadCategories();
         checkEditMode();
 
+        // [แก้ไข] ตรวจสอบ URL Parameter ว่าต้องเปิด Tab Copy ไหม
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('tab') === 'copy') {
+            const triggerEl = document.querySelector('#copy-tab');
+            const tab = new bootstrap.Tab(triggerEl);
+            tab.show();
+        }
+
         // Preview Image
         $('#imageInput').change(function(){
             const file = this.files[0];
@@ -176,22 +169,17 @@
             }
         });
 
-        // ------------------------------------------------------------------
-        // 1. Submit Book Info (Tab 1) - พร้อม Bootstrap 5 Validation Check
-        // ------------------------------------------------------------------
+        // 1. Submit Book Info (Tab 1)
         $('#bookForm').on('submit', function(e) {
             e.preventDefault();
-            e.stopPropagation(); // หยุด event bubble
+            e.stopPropagation(); 
             
-            const form = this; // อ้างอิง form element
-
-            // ตรวจสอบความถูกต้องตาม attribute required
+            const form = this; 
             if (!form.checkValidity()) {
-                $(form).addClass('was-validated'); // แสดงสีแดง/เขียว
-                return; // หยุดการทำงาน ไม่ส่ง AJAX
+                $(form).addClass('was-validated'); 
+                return;
             }
             
-            // ถ้าผ่าน ให้ส่ง AJAX
             let formData = new FormData(this);
 
             $.ajax({
@@ -211,11 +199,10 @@
                             showConfirmButton: false
                         }).then(() => {
                             if ($('#formAction').val() === 'create_book') {
-                                window.location.href = 'book'; 
+                                // [แก้ไข] บันทึกเสร็จ ให้ Redirect กลับมาหน้านี้พร้อม ID และสั่งให้เปิด Tab Copy
+                                window.location.href = 'book_form.php?id=' + res.new_id + '&tab=copy';
                             } else {
-                                // รีโหลดข้อมูล แต่ยังคงอยู่ในหน้านี้
                                 loadBookData($('#titleId').val()); 
-                                // ลบคลาส was-validated ออกเพื่อให้ดูสะอาดตาหลังบันทึกเสร็จ
                                 $(form).removeClass('was-validated');
                             }
                         });
@@ -229,19 +216,12 @@
             });
         });
 
-        // ------------------------------------------------------------------
-        // 2. Submit Add Copy (Tab 2) - Validation
-        // ------------------------------------------------------------------
+        // ... (Code JS ส่วน Add Copy และ Ebook เหมือนเดิม) ...
         $('#addCopyForm').on('submit', function(e) {
             e.preventDefault();
             e.stopPropagation();
-
             const form = this;
-            if (!form.checkValidity()) {
-                $(form).addClass('was-validated');
-                return;
-            }
-
+            if (!form.checkValidity()) { $(form).addClass('was-validated'); return; }
             $.ajax({
                 url: 'api/book_api.php',
                 type: 'POST',
@@ -249,56 +229,40 @@
                 dataType: 'json',
                 success: function(res) {
                     if (res.status === 'success') {
-                        // Reset Form และ Validation style
                         form.reset();
                         $(form).removeClass('was-validated');
-                        
                         loadCopies($('#copyTitleId').val());
                         const Toast = Swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 3000 });
                         Toast.fire({ icon: 'success', title: 'เพิ่มเล่มหนังสือแล้ว' });
-                    } else {
-                        Swal.fire('Error', res.message, 'error');
-                    }
+                    } else { Swal.fire('Error', res.message, 'error'); }
                 }
             });
         });
 
-        // ------------------------------------------------------------------
-        // 3. Submit E-Book (Tab 3) - Validation
-        // ------------------------------------------------------------------
         $('#ebookForm').on('submit', function(e) {
             e.preventDefault();
             e.stopPropagation();
-
             const form = this;
-            if (!form.checkValidity()) {
-                $(form).addClass('was-validated');
-                return;
-            }
-
+            if (!form.checkValidity()) { $(form).addClass('was-validated'); return; }
             let formData = new FormData(this);
             $.ajax({
                 url: 'api/book_api.php',
                 type: 'POST',
                 data: formData,
-                contentType: false,
-                processData: false,
-                dataType: 'json',
+                contentType: false, processData: false, dataType: 'json',
                 success: function(res) {
                     if (res.status === 'success') {
                         Swal.fire('สำเร็จ', res.message, 'success');
                         form.reset();
                         $(form).removeClass('was-validated');
                         loadBookData($('#ebookTitleId').val());
-                    } else {
-                        Swal.fire('Error', res.message, 'error');
-                    }
+                    } else { Swal.fire('Error', res.message, 'error'); }
                 }
             });
         });
     });
 
-    // --- Helper Functions (เหมือนเดิม) ---
+    // --- Helper Functions ---
     function loadCategories() {
         $.ajax({
             url: 'api/category_api.php',
@@ -347,8 +311,11 @@
                     $('#bookDesc').val(book.description);
                     $('#oldImage').val(book.image);
 
-                    if (book.image && book.image !== 'default.jpg') {
+                    if (book.image && book.image !== 'default.jpg' && book.image !== 'blank_cover_book.jpg') {
                         $('#previewImage').attr('src', '../assets/images/' + book.image);
+                    } else {
+                        // [แก้ไข] กรณีไม่มีรูป หรือเป็น default ให้ใช้ blank_cover_book
+                        $('#previewImage').attr('src', '../assets/images/blank_cover_book.jpg');
                     }
 
                     if (book.ebook_file) {
@@ -378,6 +345,7 @@
         });
     }
 
+    // ... (ฟังก์ชัน loadCopies, deleteCopy, deleteEbook เหมือนเดิม) ...
     function loadCopies(id) {
         $.ajax({
             url: 'api/book_api.php',
@@ -391,7 +359,6 @@
                         let statusBadge = copy.status === 'available' 
                             ? '<span class="badge bg-success">ว่าง</span>' 
                             : '<span class="badge bg-warning text-dark">ถูกยืม</span>';
-                        
                         html += `
                             <tr>
                                 <td>${copy.accession_no}</td>
@@ -413,18 +380,41 @@
     }
 
     function deleteCopy(id) {
-        if(!confirm('ต้องการลบเล่มนี้ใช่ไหม?')) return;
-        $.ajax({
-            url: 'api/book_api.php',
-            method: 'POST',
-            data: { action: 'delete_copy', copy_id: id },
-            dataType: 'json',
-            success: function(res) {
-                if(res.status === 'success') {
-                    loadCopies($('#copyTitleId').val());
-                } else {
-                    Swal.fire('Error', res.message, 'error');
-                }
+        // ใช้ SweetAlert2 แทน confirm() ธรรมดา
+        Swal.fire({
+            title: 'แน่ใจหรือไม่?',
+            text: "คุณต้องการลบเล่มหนังสือนี้ใช่ไหม? การกระทำนี้ไม่สามารถย้อนกลับได้!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33', // สีแดงสำหรับปุ่มลบ
+            cancelButtonColor: '#3085d6', // สีฟ้าสำหรับปุ่มยกเลิก
+            confirmButtonText: 'ใช่, ลบเลย!',
+            cancelButtonText: 'ยกเลิก'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // ถ้ากดยืนยัน ให้ส่ง AJAX ไปลบ
+                $.ajax({
+                    url: 'api/book_api.php',
+                    method: 'POST',
+                    data: { action: 'delete_copy', copy_id: id },
+                    dataType: 'json',
+                    success: function(res) {
+                        if(res.status === 'success') {
+                            // แสดงข้อความเมื่อลบสำเร็จ
+                            Swal.fire(
+                                'ลบสำเร็จ!',
+                                'ข้อมูลเล่มหนังสือถูกลบเรียบร้อยแล้ว',
+                                'success'
+                            );
+                            loadCopies($('#copyTitleId').val()); // โหลดตารางใหม่
+                        } else {
+                            Swal.fire('เกิดข้อผิดพลาด', res.message, 'error');
+                        }
+                    },
+                    error: function() {
+                        Swal.fire('Error', 'ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้', 'error');
+                    }
+                });
             }
         });
     }

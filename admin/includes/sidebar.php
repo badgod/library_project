@@ -55,7 +55,7 @@
                         หมวดหมู่หนังสือ
                     </a>
                 </li>
-                <?php $active = ($route == 'book') ? 'active' : ''; ?>
+                <?php $active = ($route == 'book' || $route == 'book_form') ? 'active' : ''; ?>
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2 <?= $active ?>" href="book">
                         <i class="fa-solid fa-book fa-fw"></i>
