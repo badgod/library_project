@@ -37,55 +37,46 @@ $title_page = '';
 // 3. กำหนด Pages ตาม Route
 switch ($route) {
     case 'index':
-    case 'index.php':
         $title_page = 'หน้าหลัก';
         $page_path = 'pages/dashboard.php';
         break;
 
     case 'settings':
-    case 'settings.php':
         $title_page = 'การตั้งค่าระบบ';
         $page_path = 'pages/settings/settings.php';
         break;
 
     case 'user':
-    case 'user.php':
         $title_page = 'ผู้ใช้งานและสมาชิก';
         $page_path = 'pages/user/user.php';
         break;
 
     case 'user_form':
-    case 'user_form.php':
         $title_page = 'ข้อมูลผู้ใช้งาน';
         $page_path = 'pages/user/user_form.php';
         break;
 
     case 'profile':
-    case 'profile.php':
         $title_page = 'แก้ไขข้อมูลส่วนตัว';
         $page_path = 'pages/profile/profile.php';
         break;
 
     case 'change_password':
-    case 'change_password.php':
         $title_page = 'เปลี่ยนรหัสผ่าน';
         $page_path = 'pages/profile/change_password.php';
         break;
 
     case 'category':
-    case 'category.php':
         $title_page = 'หมวดหมู่หนังสืือ';
         $page_path = 'pages/category/category.php';
         break;
 
     case 'book':
-    case 'book.php':
         $title_page = 'หนังสือ';
         $page_path = 'pages/book/book.php';
         break;
     
     case 'book_form':
-    case 'book_form.php':
         $title_page = 'ข้อมูลหนังสือ';
         $page_path = 'pages/book/book_form.php';
         break;
