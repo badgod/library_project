@@ -35,7 +35,7 @@
                             <i class="fa-solid fa-circle-user"></i> <?php echo htmlspecialchars($_SESSION['member_name']); ?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="profile"><i class="fa-solid fa-book"></i> ประวัติการยืม-คืน</a></li>
+                            <li><a class="dropdown-item" href="history"><i class="fa-solid fa-book"></i> ประวัติการยืม-คืน</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="profile"><i class="fa-solid fa-user"></i> ข้อมูลส่วนตัว</a></li>
                             <li><a class="dropdown-item" href="change_password"><i class="fa-solid fa-key"></i> เปลี่ยนรหัสผ่าน</a></li>

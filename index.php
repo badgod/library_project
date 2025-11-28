@@ -43,6 +43,7 @@ switch ($route) {
     // A. PUBLIC ACCESS PAGES (Root / login / register)
     // -----------------------------------------------------------------
     case 'index':
+    case 'index.php':
         // หน้าแรกสาธารณะ (Carousel + Search)
         $title_page = 'หน้าหลัก';
         $page_path = 'pages/home.php';
@@ -54,8 +55,8 @@ switch ($route) {
         break;
 
     case 'signout':
-        $title_page = 'ออกจากระบบ';
-        $page_path = 'pages/signout.php';
+        require_once 'pages/signout.php';
+        exit();
         break;
 
         // -----------------------------------------------------------------

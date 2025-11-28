@@ -89,7 +89,7 @@ try {
         if (password_verify($current_pass, $user['password'])) {
             // รหัสถูก -> เปลี่ยนรหัสใหม่
             $hash_new = password_hash($new_pass, PASSWORD_DEFAULT);
-            $update = $pdo->prepare("UPDATE user SET password = :pass WHERE user_id = :id");
+            $update = $pdo->prepare("UPDATE user SET password = :pass, change_password = 1 WHERE user_id = :id");
             $update->execute([':pass' => $hash_new, ':id' => $member_id]);
 
             echo json_encode(['status' => 'success', 'message' => 'เปลี่ยนรหัสผ่านเรียบร้อยแล้ว']);
