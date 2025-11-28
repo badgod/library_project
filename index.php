@@ -9,7 +9,7 @@ session_start();
 
 require_once __DIR__ . '/config/appconfig.php';
 require_once __DIR__ . '/config/connectdb.php';
-
+require_once __DIR__ . '/services/security.php';
 
 // 1. นำเข้าไฟล์ที่จำเป็น (ปรับ Path ไปที่ /app_shared/)
 // ใช้ require_once เพื่อหยุดการทำงานหากไฟล์สำคัญหายไป
@@ -43,49 +43,36 @@ switch ($route) {
     // A. PUBLIC ACCESS PAGES (Root / login / register)
     // -----------------------------------------------------------------
     case 'index':
-    case 'index.php':
         // หน้าแรกสาธารณะ (Carousel + Search)
         $title_page = 'หน้าหลัก';
         $page_path = 'pages/home.php';
         break;
 
-    case 'login':
-    case 'login.php':
+    case 'signin':
         $title_page = 'เข้าสู่ระบบ';
-        $page_path = 'pages/login.php';
+        $page_path = 'pages/signin.php';
         break;
+
+    case 'signout':
+        $title_page = 'ออกจากระบบ';
+        $page_path = 'pages/signout.php';
+        break;
+
+        // -----------------------------------------------------------------
+        // B. MEMBER ACCESS PAGES (ต้องการการตรวจสอบสิทธิ์)
+        // -----------------------------------------------------------------
+        checkMemberLogin();
+
     case 'profile':
-        // หน้า Login/Register อยู่ใน Root Directory
+        $title_page = 'ข้อมูลส่วนตัว';
         $page_path = 'pages/profile.php';
         break;
 
-    // -----------------------------------------------------------------
-    // B. MEMBER ACCESS PAGES (ต้องการการตรวจสอบสิทธิ์)
-    // -----------------------------------------------------------------
-    case 'member':
-        // ตรวจสอบสิทธิ์ Member ก่อนเข้าทุกหน้า
-        // check_member_access(); 
-
-        // โครงสร้างไฟล์: /member/profile.php, /member/history.php
-        $file_name = ($action === 'index' || $action === '') ? 'profile' : $action;
-        $page_path = 'member/' . $file_name . '.php';
+    case 'change_password':
+        $title_page = 'เปลี่ยนรหัสผ่าน';
+        $page_path = 'pages/change_password.php';
         break;
 
-    // -----------------------------------------------------------------
-    // C. API HANDLERS (รับ Ajax Request)
-    // -----------------------------------------------------------------
-    case 'api':
-        // ส่งคำขอไปยัง Handler ในโฟลเดอร์ /api/
-        $handler_name = $action . '_handler.php';
-        $handler_path = 'api/' . $handler_name;
-
-        if (file_exists($handler_path)) {
-            require_once $handler_path;
-        } else {
-            http_response_code(400);
-            echo json_encode(['error' => 'Public API handler not found.']);
-        }
-        exit;
 
     default:
         // หากไม่ตรงกับ Route ใดๆ ให้แสดงหน้า 404 (Pages/404.php)
@@ -104,7 +91,7 @@ if (file_exists($page_path)) {
     include __DIR__ . '/includes/header.php'; // ใช้ _header.php ตามไฟล์ที่คุณมี
     include __DIR__ . '/' . $page_path;
     include __DIR__ . '/includes/footer.php'; // ใช้ _footer.php ตามไฟล์ที่คุณมี
-} else if ($route !== 'api') {
+} else {
     // ถ้าไฟล์ View ไม่พบและไม่ใช่ API Call (404 Error)
     http_response_code(404);
     // โหลดหน้า 404.php แทน (ถ้าไฟล์ 404.php มีอยู่จริงใน pages/)
