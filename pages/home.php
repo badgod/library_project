@@ -64,7 +64,7 @@
     <div class="row mb-5">
         <div class="col-12 d-flex justify-content-between align-items-center border-bottom pb-2 mb-4">
             <h4 class="fw-bold text-primary mb-0"><i class="fa-solid fa-book-open me-2"></i>หนังสือมาใหม่ <span class="text-muted fs-6 fw-normal">(New Arrivals)</span></h4>
-            <a href="#" class="btn btn-outline-primary btn-sm px-3">ดูทั้งหมด <i class="fas fa-arrow-right"></i></a>
+            <a href="#" class="btn btn-outline-primary btn-sm rounded-pill px-3">ดูทั้งหมด <i class="fas fa-arrow-right"></i></a>
         </div>
 
         <div id="new-arrivals-list" class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-4">
@@ -77,7 +77,7 @@
     <div class="row">
         <div class="col-12 d-flex justify-content-between align-items-center border-bottom pb-2 mb-4">
             <h4 class="fw-bold text-danger mb-0"><i class="fa-solid fa-fire me-2"></i>หนังสือยอดนิยม <span class="text-muted fs-6 fw-normal">(Popular Books)</span></h4>
-            <a href="#" class="btn btn-outline-danger btn-sm px-3">ดูทั้งหมด <i class="fas fa-arrow-right"></i></a>
+            <a href="#" class="btn btn-outline-danger btn-sm rounded-pill px-3">ดูทั้งหมด <i class="fas fa-arrow-right"></i></a>
         </div>
 
         <div id="popular-books-list" class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-4">
@@ -110,7 +110,7 @@
                         <p class="card-text text-black small mb-2"><i class="fas fa-user-edit me-1"></i> ${book.author || '-'}</p>
                     </div>
                     <div class="card-footer bg-white border-top-0 p-3 pt-0">
-                        <a href="book_detail?id=${book.title_id}" class="btn btn-sm btn-outline-primary w-100">รายละเอียด</a>
+                        <a href="book_detail?id=${book.title_id}" class="btn btn-sm btn-outline-primary w-100 rounded-pill">รายละเอียด</a>
                     </div>
                 </div>
             </div>

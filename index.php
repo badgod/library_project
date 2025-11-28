@@ -59,9 +59,29 @@ switch ($route) {
         exit();
         break;
 
+    case 'book_all':
+        $title_page = 'รายการหนังสือทั้งหมด';
+        $page_path = 'pages/book_all.php';
+        break;
+
     case 'book_detail':
         $title_page = 'รายละเอียดหนังสือ';
         $page_path = 'pages/book_detail.php';
+        break;
+
+    case 'how_to_borrow_return':
+        $title_page = 'วิธียืม-คืนหนังสือ';
+        $page_path = 'pages/how_to_borrow_return.php';
+        break;
+
+    case 'about':
+        $title_page = 'เกี่ยวกับเรา';
+        $page_path = 'pages/about.php';
+        break;
+
+    case 'contact':
+        $title_page = 'ติดต่อเรา';
+        $page_path = 'pages/contact.php';
         break;
 
         // -----------------------------------------------------------------
@@ -78,7 +98,6 @@ switch ($route) {
         $title_page = 'เปลี่ยนรหัสผ่าน';
         $page_path = 'pages/change_password.php';
         break;
-
 
     default:
         // หากไม่ตรงกับ Route ใดๆ ให้แสดงหน้า 404 (Pages/404.php)

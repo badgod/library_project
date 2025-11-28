@@ -10,11 +10,16 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                <li class="nav-item"><a class="nav-link active" href="index">หน้าหลัก</a></li>
-                <li class="nav-item"><a class="nav-link" href="books">หนังสือทั้งหมด</a></li>
-                <li class="nav-item"><a class="nav-link" href="how_to_borrow_return">วิธียืม-คืนหนังสือ</a></li>
-                <li class="nav-item"><a class="nav-link" href="about">เกี่ยวกับเรา</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact">ติดต่อเรา</a></li>
+                <?php $active = ($route == 'index') ? 'active' : ''; ?>
+                <li class="nav-item"><a class="nav-link <?= $active ?>" href="index">หน้าหลัก</a></li>
+                <?php $active = ($route == 'book_all' || $route == 'book_detail') ? 'active' : ''; ?>
+                <li class="nav-item"><a class="nav-link <?= $active ?>" href="book_all">หนังสือทั้งหมด</a></li>
+                <?php $active = ($route == 'how_to_borrow_return') ? 'active' : ''; ?>
+                <li class="nav-item"><a class="nav-link <?= $active ?>" href="how_to_borrow_return">วิธียืม-คืนหนังสือ</a></li>
+                <?php $active = ($route == 'about') ? 'active' : ''; ?>
+                <li class="nav-item"><a class="nav-link <?= $active ?>" href="about">เกี่ยวกับเรา</a></li>
+                <?php $active = ($route == 'contact') ? 'active' : ''; ?>
+                <li class="nav-item"><a class="nav-link <?= $active ?>" href="contact">ติดต่อเรา</a></li>
             </ul>
 
             <ul class="navbar-nav ms-auto align-items-center">
@@ -36,10 +41,14 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="history"><i class="fa-solid fa-book"></i> ประวัติการยืม-คืน</a></li>
-                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li><a class="dropdown-item" href="profile"><i class="fa-solid fa-user"></i> ข้อมูลส่วนตัว</a></li>
                             <li><a class="dropdown-item" href="change_password"><i class="fa-solid fa-key"></i> เปลี่ยนรหัสผ่าน</a></li>
-                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li><a class="dropdown-item text-danger" href="signout"><i class="fa-solid fa-right-from-bracket"></i> ออกจากระบบ</a></li>
                         </ul>
                     </li>
