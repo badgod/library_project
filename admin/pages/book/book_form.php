@@ -200,7 +200,7 @@
                         }).then(() => {
                             if ($('#formAction').val() === 'create_book') {
                                 // [แก้ไข] บันทึกเสร็จ ให้ Redirect กลับมาหน้านี้พร้อม ID และสั่งให้เปิด Tab Copy
-                                window.location.href = 'book_form.php?id=' + res.new_id + '&tab=copy';
+                                window.location.href = 'book_form?id=' + res.new_id + '&tab=copy';
                             } else {
                                 loadBookData($('#titleId').val()); 
                                 $(form).removeClass('was-validated');
