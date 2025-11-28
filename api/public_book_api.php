@@ -9,24 +9,17 @@ $action = $_GET['action'] ?? '';
 try {
     if ($action === 'new_arrivals') {
         // หนังสือมาใหม่ 8 เล่มล่าสุด
-        $stmt = $pdo->prepare("SELECT * FROM book_title ORDER BY title_id DESC LIMIT 8");
+        $stmt = $pdo->prepare("SELECT * FROM book_title ORDER BY title_id DESC LIMIT 5");
         $stmt->execute();
         echo json_encode(['status' => 'success', 'data' => $stmt->fetchAll(PDO::FETCH_ASSOC)]);
     } elseif ($action === 'popular_books') {
-        // หนังสือยอดนิยม (นับจากสถิติการยืม) ถ้าไม่มีให้ Random
-        // หมายเหตุ: สมมติว่ามีตาราง loan_item เชื่อมกับ physical_copy
-        // ถ้ายังไม่มีข้อมูลการยืม Query นี้จะคืนค่า 0 และเราจะใช้ PHP เช็คเพื่อ Random
-
-        $sql = "SELECT b.*, COUNT(li.id) as borrow_count 
+        $sql = "SELECT b.*, COUNT(li.loan_item_id) as borrow_count 
                 FROM book_title b 
                 LEFT JOIN physical_copy pc ON b.title_id = pc.title_id 
                 LEFT JOIN loan_item li ON pc.copy_id = li.copy_id 
                 GROUP BY b.title_id 
                 ORDER BY borrow_count DESC, RAND() 
-                LIMIT 8";
-
-        // กรณีระบบเพิ่งเริ่ม ยังไม่มีตาราง loan_item ให้ใช้ Random เลย
-        // $sql = "SELECT * FROM book_title ORDER BY RAND() LIMIT 8"; 
+                LIMIT 5";
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
