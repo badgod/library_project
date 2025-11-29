@@ -50,7 +50,7 @@ try {
         $_SESSION['admin_name'] = $member['first_name'] . ' ' . $member['last_name'];
 
 
-        echo json_encode(['status' => 'success', 'message' => 'เข้าสู่ระบบสำเร็จ']);
+        echo json_encode(['status' => 'success', 'message' => 'เข้าสู่ระบบสำเร็จ', 'change_password' => $user['change_password']]);
     } else {
         echo json_encode(['status' => 'error', 'message' => 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง']);
     }

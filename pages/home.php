@@ -16,7 +16,7 @@
                         ค้นหาหนังสือและทรัพยากรดิจิทัลทั้งหมดของหน่วยงานคุณ
                     </p>
                     <p>
-                        <a class="btn btn-lg btn-primary" href="#">สมัครสมาชิกวันนี้</a>
+                        <a class="btn btn-lg btn-primary rounded-pill" href="signin">สมัครสมาชิกวันนี้</a>
                     </p>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                     <p>
                         สำหรับสมาชิก: อ่านหนังสืออิเล็กทรอนิกส์ได้ทันทีโดยไม่เสียเวลาจัดส่ง
                     </p>
-                    <p><a class="btn btn-lg btn-primary" href="#">เข้าสู่ระบบเพื่ออ่าน</a></p>
+                    <p><a class="btn btn-lg btn-primary rounded-pill" href="signin">เข้าสู่ระบบเพื่ออ่าน</a></p>
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@
                         ตรวจสอบสถานะการยืมหนังสือและจัดการการจองของคุณได้อย่างง่ายดาย
                     </p>
                     <p>
-                        <a class="btn btn-lg btn-primary" href="#">ดูประวัติการยืม</a>
+                        <a class="btn btn-lg btn-primary rounded-pill" href="history">ดูประวัติการยืม</a>
                     </p>
                 </div>
             </div>

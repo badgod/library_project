@@ -11,7 +11,7 @@ function checkAdminLogin()
             http_response_code(401);
             echo json_encode(['status' => 'error', 'message' => 'Unauthorized']);
         } else {
-            header('Location: signin');
+            header('Location: signin.php');
         }
         exit();
     }

@@ -256,22 +256,41 @@ include_once '../config/connectdb.php';
                 success: function(response) {
                     console.log(response);
                     if (response.status === 'success') {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'สำเร็จ',
-                            text: response.message,
-                            timer: 1500,
-                            showConfirmButton: false
-                        }).then(() => {
-                            window.location.href = 'index';
-                        });
+                        // เช็คเงื่อนไขรหัสผ่านเริ่มต้น (ถ้ามีส่งมาจาก API)
+                        if (response.change_password == 0) {
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'แจ้งเตือนความปลอดภัย',
+                                text: 'คุณยังใช้รหัสผ่านเริ่มต้นอยู่ กรุณาเปลี่ยนรหัสผ่าน',
+                                showCancelButton: true,
+                                confirmButtonText: 'เปลี่ยนรหัสผ่าน',
+                                cancelButtonText: 'ไว้ทีหลัง'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = 'change_password';
+                                } else {
+                                    window.location.href = 'index'; // ไปหน้าแรก
+                                }
+                            });
+                        } else {
+                            // Login สำเร็จปกติ
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'สำเร็จ',
+                                text: response.message,
+                                timer: 1500,
+                                showConfirmButton: false
+                            }).then(() => {
+                                window.location.href = 'index'; // ไปหน้าแรก
+                            });
+                        }
                     } else {
+                        // Login ไม่สำเร็จ
                         Swal.fire({
                             icon: 'error',
                             title: 'ผิดพลาด',
                             text: response.message
                         });
-                        btn.prop('disabled', false).text(originalText);
                     }
                 },
                 error: function(xhr, status, error) {

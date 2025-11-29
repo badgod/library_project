@@ -84,7 +84,7 @@
 
                 <div class="mt-5">
                     <button class="btn btn-primary btn-lg px-4 rounded-pill shadow-sm">
-                        <i class="fas fa-book-reader me-2"></i>จอง / ยืมหนังสือ
+                        <i class="fas fa-book-reader me-2"></i>ยืมหนังสือ
                     </button>
                     <button class="btn btn-outline-success btn-lg px-4 rounded-pill ms-2" ${book.has_ebook > 0 ? '' : 'disabled style="opacity:0.5;"'}>
                         <i class="fas fa-tablet-alt me-2"></i>อ่าน E-Book
