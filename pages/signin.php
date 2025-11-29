@@ -53,7 +53,7 @@
             btn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> กำลังตรวจสอบ...');
 
             $.ajax({
-                url: 'api/public_auth_api.php',
+                url: 'api/auth_api.php',
                 type: 'POST',
                 data: $(this).serialize() + '&mode=signin',
                 dataType: 'json',

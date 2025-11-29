@@ -1,5 +1,5 @@
 <?php
-// api/public_profile_api.php
+// api/profile_api.php
 header('Content-Type: application/json');
 require_once '../config/session_init.php';
 require_once '../config/connectdb.php';

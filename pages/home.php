@@ -134,7 +134,7 @@
 
         // 1. โหลดหนังสือมาใหม่
         $.ajax({
-            url: 'api/public_book_api.php',
+            url: 'api/book_api.php',
             data: {
                 action: 'new_arrivals'
             },
@@ -154,7 +154,7 @@
 
         // 2. โหลดหนังสือยอดนิยม
         $.ajax({
-            url: 'api/public_book_api.php',
+            url: 'api/book_api.php',
             data: {
                 action: 'popular_books'
             },

@@ -99,6 +99,11 @@ switch ($route) {
         $page_path = 'pages/cart.php';
         break;
 
+    case 'history':
+        $title_page = 'ประวัติการยืมหนังสือ';
+        $page_path = 'pages/history.php';
+        break;
+
     case 'profile':
         $title_page = 'ข้อมูลส่วนตัว';
         $page_path = 'pages/profile.php';

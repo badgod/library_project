@@ -19,7 +19,7 @@
 
         // ตรวจสอบ path ของ API ว่าถูกต้องหรือไม่
         // ถ้าเข้าผ่าน index.php ปกติจะเป็น 'api/...' แต่ถ้าเข้าไฟล์ตรงๆ อาจต้องแก้
-        const apiPath = 'api/public_book_api.php'; 
+        const apiPath = 'api/book_api.php'; 
 
         if (bookId) {
             loadBookDetail(bookId);

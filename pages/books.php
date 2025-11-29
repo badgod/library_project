@@ -59,7 +59,7 @@
     $(document).ready(function() {
         // 1. โหลดรายชื่อหมวดหมู่มาใส่ Dropdown
         $.ajax({
-            url: 'api/public_book_api.php',
+            url: 'api/book_api.php',
             data: {
                 action: 'get_categories'
             },
@@ -86,7 +86,7 @@
             $('#no-result').addClass('d-none');
 
             $.ajax({
-                url: 'api/public_book_api.php',
+                url: 'api/book_api.php',
                 data: {
                     action: 'search_books',
                     q: query,

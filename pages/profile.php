@@ -76,7 +76,7 @@
 
 <script>
     $(document).ready(function() {
-        const API_URL = 'api/public_profile_api.php';
+        const API_URL = 'api/profile_api.php';
 
         // 1. โหลดข้อมูล
         $.ajax({

@@ -1,5 +1,5 @@
 <?php
-// api/public_auth_api.php
+// api/auth_api.php
 header('Content-Type: application/json');
 include_once '../config/session_init.php';
 
