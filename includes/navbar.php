@@ -12,8 +12,8 @@
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <?php $active = ($route == 'index') ? 'active' : ''; ?>
                 <li class="nav-item"><a class="nav-link <?= $active ?>" href="index">หน้าหลัก</a></li>
-                <?php $active = ($route == 'book_all' || $route == 'book_detail') ? 'active' : ''; ?>
-                <li class="nav-item"><a class="nav-link <?= $active ?>" href="book_all">หนังสือทั้งหมด</a></li>
+                <?php $active = ($route == 'books' || $route == 'book_detail') ? 'active' : ''; ?>
+                <li class="nav-item"><a class="nav-link <?= $active ?>" href="books">หนังสือทั้งหมด</a></li>
                 <?php $active = ($route == 'how_to_borrow_return') ? 'active' : ''; ?>
                 <li class="nav-item"><a class="nav-link <?= $active ?>" href="how_to_borrow_return">วิธียืม-คืนหนังสือ</a></li>
                 <?php $active = ($route == 'about') ? 'active' : ''; ?>

@@ -59,9 +59,9 @@ switch ($route) {
         exit();
         break;
 
-    case 'book_all':
+    case 'books':
         $title_page = 'รายการหนังสือทั้งหมด';
-        $page_path = 'pages/book_all.php';
+        $page_path = 'pages/books.php';
         break;
 
     case 'book_detail':

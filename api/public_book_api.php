@@ -8,18 +8,22 @@ $action = $_GET['action'] ?? '';
 
 try {
     if ($action === 'new_arrivals') {
-        // หนังสือมาใหม่ 8 เล่มล่าสุด
-        $stmt = $pdo->prepare("SELECT * FROM book_title ORDER BY title_id DESC LIMIT 5");
+
+        $sql = "SELECT *, (SELECT COUNT(*) FROM ebook WHERE title_id = book_title.title_id) as has_ebook 
+                FROM book_title ORDER BY title_id DESC LIMIT 10";
+        $stmt = $pdo->prepare($sql);
         $stmt->execute();
         echo json_encode(['status' => 'success', 'data' => $stmt->fetchAll(PDO::FETCH_ASSOC)]);
     } elseif ($action === 'popular_books') {
-        $sql = "SELECT b.*, COUNT(li.loan_item_id) as borrow_count 
+        // เพิ่ม has_ebook ใน select
+        $sql = "SELECT b.*, COUNT(li.loan_item_id) as borrow_count,
+                (SELECT COUNT(*) FROM ebook WHERE title_id = b.title_id) as has_ebook
                 FROM book_title b 
                 LEFT JOIN physical_copy pc ON b.title_id = pc.title_id 
                 LEFT JOIN loan_item li ON pc.copy_id = li.copy_id 
                 GROUP BY b.title_id 
                 ORDER BY borrow_count DESC, RAND() 
-                LIMIT 5";
+                LIMIT 10";
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
@@ -34,7 +38,9 @@ try {
         $search = $_GET['q'] ?? '';
         $cat = $_GET['cat'] ?? '';
 
-        $sql = "SELECT b.*, c.name as category_name 
+        // เพิ่ม has_ebook
+        $sql = "SELECT b.*, c.name as category_name,
+                (SELECT COUNT(*) FROM ebook WHERE title_id = b.title_id) as has_ebook
                 FROM book_title b 
                 LEFT JOIN category c ON b.category_id = c.category_id 
                 WHERE 1=1 ";
@@ -59,13 +65,17 @@ try {
     } elseif ($action === 'book_detail') {
         $id = $_GET['id'] ?? 0;
 
-        // ข้อมูลหนังสือ
-        $stmt = $pdo->prepare("SELECT b.*, c.name as category_name FROM book_title b LEFT JOIN category c ON b.category_id = c.category_id WHERE b.title_id = ?");
+        $sql = "SELECT b.*, c.name as category_name,
+                (SELECT COUNT(*) FROM ebook WHERE title_id = b.title_id) as has_ebook
+                FROM book_title b 
+                LEFT JOIN category c ON b.category_id = c.category_id 
+                WHERE b.title_id = ?";
+
+        $stmt = $pdo->prepare($sql);
         $stmt->execute([$id]);
         $book = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($book) {
-            // สถานะตัวเล่ม (ว่าง/ไม่ว่าง)
             $stmtCopy = $pdo->prepare("SELECT count(*) as total, 
                 SUM(CASE WHEN status = 'available' THEN 1 ELSE 0 END) as available 
                 FROM physical_copy WHERE title_id = ?");
