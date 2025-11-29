@@ -122,7 +122,7 @@ try {
     $ebook = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($ebook && !empty($ebook['ebook_file'])) {
-        $file_path = '../uploads/ebooks/' . $ebook['ebook_file'];
+        $file_path = '../../uploads/ebooks/' . $ebook['ebook_file'];
 
         // ตรวจสอบว่ามีไฟล์จริงไหม
         if (file_exists($file_path)) {

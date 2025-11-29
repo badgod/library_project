@@ -68,10 +68,16 @@
                 {
                     data: 'ebook_file',
                     className: 'text-center',
-                    render: function(data) {
-                        return data ?
-                            '<span class="badge bg-primary"><i class="fa-solid fa-check"></i> มีไฟล์</span>' :
-                            '<span class="badge bg-light text-dark">ไม่มี</span>';
+                    render: function(data, type, row) {
+                        if (data && row.ebook_id) {
+                            // ถ้ามีไฟล์ ให้แสดงปุ่ม Link ไปหน้า read_ebook
+                            return `<a href="read_ebook?id=${row.ebook_id}" target="_blank" class="btn btn-sm btn-outline-info rounded-pill px-3 fw-bold">
+                                        <i class="fa-solid fa-book-reader me-1"></i> อ่าน
+                                    </a>`;
+                        } else {
+                            // ถ้าไม่มีไฟล์
+                            return '<span class="badge bg-light text-secondary border">ไม่มีไฟล์</span>';
+                        }
                     }
                 },
                 {

@@ -18,7 +18,7 @@
 </ul>
 
 <div class="tab-content" id="bookTabContent">
-    
+
     <div class="tab-pane fade show active" id="info" role="tabpanel">
         <div class="card shadow-sm">
             <div class="card-body">
@@ -44,7 +44,7 @@
                                 <input type="text" class="form-control" name="title" id="bookTitle" required>
                                 <div class="invalid-feedback">กรุณากรอกชื่อหนังสือ</div>
                             </div>
-                            
+
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label class="form-label">หมวดหมู่ <span class="text-danger">*</span></label>
@@ -105,10 +105,16 @@
             <div class="card-body">
                 <table class="table table-bordered table-striped" id="copyTable">
                     <thead class="table-light">
-                        <tr><th>เลขทะเบียน</th><th>สถานะ</th><th width="10%">จัดการ</th></tr>
+                        <tr>
+                            <th>เลขทะเบียน</th>
+                            <th>สถานะ</th>
+                            <th width="10%">จัดการ</th>
+                        </tr>
                     </thead>
                     <tbody id="copyTableBody">
-                        <tr><td colspan="3" class="text-center">กำลังโหลด...</td></tr>
+                        <tr>
+                            <td colspan="3" class="text-center">กำลังโหลด...</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -158,11 +164,11 @@
         }
 
         // Preview Image
-        $('#imageInput').change(function(){
+        $('#imageInput').change(function() {
             const file = this.files[0];
-            if(file){
+            if (file) {
                 let reader = new FileReader();
-                reader.onload = function(event){
+                reader.onload = function(event) {
                     $('#previewImage').attr('src', event.target.result);
                 }
                 reader.readAsDataURL(file);
@@ -172,22 +178,22 @@
         // 1. Submit Book Info (Tab 1)
         $('#bookForm').on('submit', function(e) {
             e.preventDefault();
-            e.stopPropagation(); 
-            
-            const form = this; 
+            e.stopPropagation();
+
+            const form = this;
             if (!form.checkValidity()) {
-                $(form).addClass('was-validated'); 
+                $(form).addClass('was-validated');
                 return;
             }
-            
+
             let formData = new FormData(this);
 
             $.ajax({
                 url: 'api/book_api.php',
                 type: 'POST',
                 data: formData,
-                contentType: false, 
-                processData: false, 
+                contentType: false,
+                processData: false,
                 dataType: 'json',
                 success: function(res) {
                     if (res.status === 'success') {
@@ -202,7 +208,7 @@
                                 // [แก้ไข] บันทึกเสร็จ ให้ Redirect กลับมาหน้านี้พร้อม ID และสั่งให้เปิด Tab Copy
                                 window.location.href = 'book_form?id=' + res.new_id + '&tab=copy';
                             } else {
-                                loadBookData($('#titleId').val()); 
+                                loadBookData($('#titleId').val());
                                 $(form).removeClass('was-validated');
                             }
                         });
@@ -221,7 +227,10 @@
             e.preventDefault();
             e.stopPropagation();
             const form = this;
-            if (!form.checkValidity()) { $(form).addClass('was-validated'); return; }
+            if (!form.checkValidity()) {
+                $(form).addClass('was-validated');
+                return;
+            }
             $.ajax({
                 url: 'api/book_api.php',
                 type: 'POST',
@@ -232,9 +241,19 @@
                         form.reset();
                         $(form).removeClass('was-validated');
                         loadCopies($('#copyTitleId').val());
-                        const Toast = Swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 3000 });
-                        Toast.fire({ icon: 'success', title: 'เพิ่มเล่มหนังสือแล้ว' });
-                    } else { Swal.fire('Error', res.message, 'error'); }
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'เพิ่มเล่มหนังสือแล้ว'
+                        });
+                    } else {
+                        Swal.fire('Error', res.message, 'error');
+                    }
                 }
             });
         });
@@ -243,20 +262,27 @@
             e.preventDefault();
             e.stopPropagation();
             const form = this;
-            if (!form.checkValidity()) { $(form).addClass('was-validated'); return; }
+            if (!form.checkValidity()) {
+                $(form).addClass('was-validated');
+                return;
+            }
             let formData = new FormData(this);
             $.ajax({
                 url: 'api/book_api.php',
                 type: 'POST',
                 data: formData,
-                contentType: false, processData: false, dataType: 'json',
+                contentType: false,
+                processData: false,
+                dataType: 'json',
                 success: function(res) {
                     if (res.status === 'success') {
                         Swal.fire('สำเร็จ', res.message, 'success');
                         form.reset();
                         $(form).removeClass('was-validated');
                         loadBookData($('#ebookTitleId').val());
-                    } else { Swal.fire('Error', res.message, 'error'); }
+                    } else {
+                        Swal.fire('Error', res.message, 'error');
+                    }
                 }
             });
         });
@@ -324,7 +350,7 @@
                                 <i class="fa-solid fa-file-pdf fa-3x mb-3"></i><br>
                                 <h4>มีไฟล์ E-Book แล้ว</h4>
                                 <p class="mb-3">${book.ebook_file}</p>
-                                <a href="read_ebook&id=${book.ebook_file}" target="_blank" class="btn btn-outline-success me-2">
+                                <a href="read_ebook?id=${book.ebook_id}" target="_blank" class="btn btn-outline-success me-2">
                                     <i class="fa-solid fa-eye"></i> ดูไฟล์
                                 </a>
                                 <button onclick="deleteEbook(${id})" class="btn btn-outline-danger">
@@ -350,15 +376,18 @@
         $.ajax({
             url: 'api/book_api.php',
             method: 'GET',
-            data: { action: 'get_copies', title_id: id },
+            data: {
+                action: 'get_copies',
+                title_id: id
+            },
             dataType: 'json',
             success: function(res) {
                 let html = '';
                 if (res.data.length > 0) {
                     res.data.forEach(copy => {
-                        let statusBadge = copy.status === 'available' 
-                            ? '<span class="badge bg-success">ว่าง</span>' 
-                            : '<span class="badge bg-warning text-dark">ถูกยืม</span>';
+                        let statusBadge = copy.status === 'available' ?
+                            '<span class="badge bg-success">ว่าง</span>' :
+                            '<span class="badge bg-warning text-dark">ถูกยืม</span>';
                         html += `
                             <tr>
                                 <td>${copy.accession_no}</td>
@@ -396,10 +425,13 @@
                 $.ajax({
                     url: 'api/book_api.php',
                     method: 'POST',
-                    data: { action: 'delete_copy', copy_id: id },
+                    data: {
+                        action: 'delete_copy',
+                        copy_id: id
+                    },
                     dataType: 'json',
                     success: function(res) {
-                        if(res.status === 'success') {
+                        if (res.status === 'success') {
                             // แสดงข้อความเมื่อลบสำเร็จ
                             Swal.fire(
                                 'ลบสำเร็จ!',
@@ -432,10 +464,13 @@
                 $.ajax({
                     url: 'api/book_api.php',
                     method: 'POST',
-                    data: { action: 'delete_ebook', title_id: titleId },
+                    data: {
+                        action: 'delete_ebook',
+                        title_id: titleId
+                    },
                     dataType: 'json',
                     success: function(res) {
-                        if(res.status === 'success') {
+                        if (res.status === 'success') {
                             Swal.fire('Deleted', res.message, 'success');
                             loadBookData(titleId);
                         }

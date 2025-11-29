@@ -25,9 +25,11 @@ try {
                         c.name as category_name,
                         (SELECT COUNT(*) FROM physical_copy p WHERE p.title_id = b.title_id) as total_copies,
                         (SELECT COUNT(*) FROM physical_copy p WHERE p.title_id = b.title_id AND p.status = 'available') as available_copies,
-                        (SELECT ebook_file FROM ebook e WHERE e.title_id = b.title_id LIMIT 1) as ebook_file
+                        e.ebook_file,
+                        e.ebook_id
                     FROM book_title b
                     LEFT JOIN category c ON b.category_id = c.category_id
+                    LEFT JOIN ebook e ON b.title_id = e.title_id
                     ORDER BY b.title_id DESC";
             $stmt = $pdo->query($sql);
             echo json_encode(['data' => $stmt->fetchAll(PDO::FETCH_ASSOC)]);
