@@ -10,7 +10,7 @@
     <script src="assets/js/color-modes.js"></script>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
     <meta name="theme-color" content="#712cf9" />
     <link href="assets/css/dashboard.css" rel="stylesheet" />
@@ -18,13 +18,10 @@
     <!-- FontAwesome --->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
 
-    <!-- jQuery --->
-    <script src="vendor/jQuery/jquery-3.7.1.min.js"></script>
-
-    <!-- SweetAlert2 --->
-    <link href="vendor/sweetAlert/sweetalert2.css" rel="stylesheet" />
-    <link href="vendor/sweetAlert/bootstrap-5.css" rel="stylesheet" />
-    <script src="vendor/sweetAlert/sweetalert2.all.min.js"></script>
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@100;200;300;400;500;600;700&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;

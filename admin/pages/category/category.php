@@ -89,12 +89,14 @@
                         let safeDesc = row.description ? row.description.replace(/'/g, "\\'").replace(/\n/g, "\\n") : "";
 
                         return `
-                        <button class="btn btn-warning btn-sm me-1" onclick="editCategory(${row.category_id}, '${safeName}', '${safeDesc}')">
-                            <i class="fa-solid fa-pen"></i>
-                        </button>
-                        <button class="btn btn-danger btn-sm" onclick="deleteCategory(${row.category_id})">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
+                        <div class="btn-group" role="group">
+                            <button class="btn btn-warning btn-sm" onclick="editCategory(${row.category_id}, '${safeName}', '${safeDesc}')">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+                            <button class="btn btn-danger btn-sm" onclick="deleteCategory(${row.category_id})">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
                     `;
                     }
                 }
