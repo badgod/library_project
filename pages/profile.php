@@ -59,7 +59,7 @@
                         </div>
 
                         <div class="d-grid gap-2 mt-4">
-                            <button type="submit" class="btn btn-primary btn-lg shadow-sm">
+                            <button type="submit" class="btn btn-primary btn-lg shadow-sm rounded-pill">
                                 <i class="fas fa-save me-2"></i>บันทึกการเปลี่ยนแปลง
                             </button>
                         </div>

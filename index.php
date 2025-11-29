@@ -89,6 +89,11 @@ switch ($route) {
         // -----------------------------------------------------------------
         checkMemberLogin();
 
+    case 'read_ebook':
+        $title_page = 'อ่าน E-Book';
+        $page_path = 'pages/read_ebook.php';
+        break;
+
     case 'profile':
         $title_page = 'ข้อมูลส่วนตัว';
         $page_path = 'pages/profile.php';

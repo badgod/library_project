@@ -324,7 +324,7 @@
                                 <i class="fa-solid fa-file-pdf fa-3x mb-3"></i><br>
                                 <h4>มีไฟล์ E-Book แล้ว</h4>
                                 <p class="mb-3">${book.ebook_file}</p>
-                                <a href="../uploads/ebooks/${book.ebook_file}" target="_blank" class="btn btn-outline-success me-2">
+                                <a href="read_ebook&id=${book.ebook_file}" target="_blank" class="btn btn-outline-success me-2">
                                     <i class="fa-solid fa-eye"></i> ดูไฟล์
                                 </a>
                                 <button onclick="deleteEbook(${id})" class="btn btn-outline-danger">

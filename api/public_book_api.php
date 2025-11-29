@@ -66,7 +66,8 @@ try {
         $id = $_GET['id'] ?? 0;
 
         $sql = "SELECT b.*, c.name as category_name,
-                (SELECT COUNT(*) FROM ebook WHERE title_id = b.title_id) as has_ebook
+                (SELECT COUNT(*) FROM ebook WHERE title_id = b.title_id) as has_ebook,
+                (SELECT ebook_id FROM ebook WHERE title_id = b.title_id LIMIT 1) as ebook_id
                 FROM book_title b 
                 LEFT JOIN category c ON b.category_id = c.category_id 
                 WHERE b.title_id = ?";

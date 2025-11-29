@@ -12,7 +12,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <?php $active = ($route == 'index') ? 'active' : ''; ?>
                 <li class="nav-item"><a class="nav-link <?= $active ?>" href="index">หน้าหลัก</a></li>
-                <?php $active = ($route == 'books' || $route == 'book_detail') ? 'active' : ''; ?>
+                <?php $active = ($route == 'books' || $route == 'book_detail' || $route = 'read_ebook') ? 'active' : ''; ?>
                 <li class="nav-item"><a class="nav-link <?= $active ?>" href="books">หนังสือทั้งหมด</a></li>
                 <?php $active = ($route == 'how_to_borrow_return') ? 'active' : ''; ?>
                 <li class="nav-item"><a class="nav-link <?= $active ?>" href="how_to_borrow_return">วิธียืม-คืนหนังสือ</a></li>
@@ -53,7 +53,7 @@
                         </ul>
                     </li>
                 <?php else: ?>
-                    <li class="nav-item"><a class="btn btn-outline-light btn-sm" href="signin">เข้าสู่ระบบ</a></li>
+                    <li class="nav-item"><a class="btn btn-outline-light btn-sm rounded-pill px-4" href="signin">เข้าสู่ระบบ</a></li>
                 <?php endif; ?>
             </ul>
 

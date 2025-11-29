@@ -62,6 +62,21 @@
                 ebookBadge = `<span class="badge bg-secondary fs-6 ms-2" style="opacity: 0.3;"><i class="fas fa-tablet-alt me-1"></i>ไม่มี E-Book</span>`;
             }
 
+            let readButton = '';
+            if (book.has_ebook > 0 && book.ebook_id) {
+                // ลิ้งก์ไปหน้า read_ebook พร้อมส่ง ebook_id
+                readButton = `
+                        <a href="read_ebook?id=${book.ebook_id}" class="btn btn-outline-success btn-lg px-4 rounded-pill ms-2">
+                            <i class="fas fa-tablet-alt me-2"></i>อ่าน E-Book
+                        </a>`;
+            } else {
+                // ปุ่มสถานะ Disable
+                readButton = `
+                        <button class="btn btn-outline-secondary btn-lg px-4 rounded-pill ms-2" disabled style="opacity:0.5;">
+                            <i class="fas fa-tablet-alt me-2"></i>ไม่มี E-Book
+                        </button>`;
+            }
+
             let html = `
             <div class="col-md-4 mb-4">
                 <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
@@ -86,11 +101,8 @@
                     <button class="btn btn-primary btn-lg px-4 rounded-pill shadow-sm">
                         <i class="fas fa-book-reader me-2"></i>ยืมหนังสือ
                     </button>
-                    <button class="btn btn-outline-success btn-lg px-4 rounded-pill ms-2" ${book.has_ebook > 0 ? '' : 'disabled style="opacity:0.5;"'}>
-                        <i class="fas fa-tablet-alt me-2"></i>อ่าน E-Book
-                    </button>
-                    
-                    <a href="index" class="btn btn-outline-secondary btn-lg px-4 rounded-pill ms-2 text-decoration-none text-muted">
+                    ${readButton}
+                    <a href="books" class="btn btn-outline-secondary btn-lg px-4 rounded-pill ms-2 text-decoration-none text-muted">
                         ย้อนกลับ
                     </a>
                 </div>

@@ -18,7 +18,7 @@
                             <input type="password" name="password" class="form-control" placeholder="รหัสผ่าน" required>
                             <div class="invalid-feedback">กรุณากรอกรหัสผ่าน</div>
                         </div>
-                        <button type="submit" id="btnLogin" class="btn btn-primary w-100"><i class="fa-solid fa-right-to-bracket"></i> เข้าสู่ระบบ</button>
+                        <button type="submit" id="btnLogin" class="btn btn-primary w-100 rounded-pill"><i class="fa-solid fa-right-to-bracket"></i> เข้าสู่ระบบ</button>
                     </form>
 
                 </div>

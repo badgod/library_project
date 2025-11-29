@@ -34,7 +34,7 @@
                         </div>
 
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-warning btn-lg shadow-sm text-white">
+                            <button type="submit" class="btn btn-warning btn-lg shadow-sm rounded-pill text-white">
                                 <i class="fas fa-check-circle me-2"></i>ยืนยันการเปลี่ยน
                             </button>
                         </div>

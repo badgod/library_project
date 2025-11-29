@@ -75,10 +75,15 @@ switch ($route) {
         $title_page = 'หนังสือ';
         $page_path = 'pages/book/book.php';
         break;
-    
+
     case 'book_form':
         $title_page = 'ข้อมูลหนังสือ';
         $page_path = 'pages/book/book_form.php';
+        break;
+
+    case 'read_ebook';
+        $title_page = 'อ่าน E-Book';
+        $page_path = 'pages/book/read_ebook.php';
         break;
 
     default:
