@@ -94,6 +94,11 @@ switch ($route) {
         $page_path = 'pages/read_ebook.php';
         break;
 
+    case 'cart':
+        $title_page = 'รายการยืมหนังสือ';
+        $page_path = 'pages/cart.php';
+        break;
+
     case 'profile':
         $title_page = 'ข้อมูลส่วนตัว';
         $page_path = 'pages/profile.php';
