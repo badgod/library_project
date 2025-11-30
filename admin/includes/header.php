@@ -5,17 +5,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
+    <meta name="author" content="Supod Wongsri" />
     <title><?= $title_page ?> | <?= SYSTEMNAME_ADMIN ?></title>
     <link rel="icon" href="assets/icons/favicon.png" type="image/png">
-    <script src="assets/js/color-modes.js"></script>
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
+    <!-- Load color mode script -->
+    <script src="assets/js/color-modes.js"></script>
     <meta name="theme-color" content="#712cf9" />
     <link href="assets/css/dashboard.css" rel="stylesheet" />
 
-    <!-- FontAwesome --->
+    <!-- Font Awesome --->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
 
     <!-- Google Font -->
